@@ -5,11 +5,7 @@
 /.pnp
 .pnp.js
 
-/src/BaiTapTongHop/
 
-/src/Lodash/
-
-/src/TailwindComponent/
 
 # testing
 /coverage
