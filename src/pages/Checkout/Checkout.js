@@ -7,10 +7,14 @@ import { CloseOutlined, CheckOutlined } from '@ant-design/icons'
 import { CHANGE_TAB_ACTIVE, DAT_GHE } from '../../redux/actions/types/QuanLyDatVeType';
 import _ from 'lodash';
 import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe';
-import { Tabs } from 'antd';
+import { Tabs, Button } from 'antd';
 import { layThongTinNguoiDungAction } from '../../redux/actions/QuanLyNguoiDungAction';
 import moment from 'moment';
 import { connection } from '../..';
+import { history } from '../../App';
+import styled from 'styled-components'
+import { ACCESS_TOKEN, USER_LOGIN } from '../../Util/setting';
+import { NavLink } from 'react-router-dom';
 
 const { TabPane } = Tabs;
 
@@ -77,7 +81,7 @@ function Checkout(props) {
 
     }, [])
 
-    const clearGhe = (event) =>  {
+    const clearGhe = (event) => {
 
         connection.invoke('huyDat', userLogin.taiKhoan, props.match.params.id)
     }
@@ -249,18 +253,46 @@ export default function CheckoutTab(props) {
 
     const dispatch = useDispatch();
 
+    const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer);
+
+
+    useEffect(() => {
+        return () => {
+            dispatch({type: CHANGE_TAB_ACTIVE, number: '1'})
+        }
+    }, [])
+
+    const operations = <Fragment>
+        {!_.isEmpty(userLogin) ? <Fragment>
+            <button onClick={() => {
+                history.push(`/profile`);
+            }}><UserProfile className="ml-5 rounded-full bg-red-200">{userLogin.taiKhoan.substr(0, 1)}</UserProfile>  Hello {userLogin.taiKhoan}</button>
+            <button onClick={() => {
+                localStorage.removeItem(USER_LOGIN);
+                localStorage.removeItem(ACCESS_TOKEN);
+                history.push('/');
+                window.location.reload();
+            }} className="text-blue-800">Đăng xuất</button>
+        </Fragment> : ''}
+    </Fragment>;
+
+
+
     const { tabActive } = useSelector(state => state.QuanLyDatVeReducer);
     console.log('tabActive', tabActive)
 
 
     return <div className="p-5">
-        <Tabs defaultActiveKey="1" activeKey={tabActive} onChange={(key) => {
+        <Tabs tabBarExtraContent={operations} defaultActiveKey="1" activeKey={tabActive} onChange={(key) => {
             dispatch({ type: CHANGE_TAB_ACTIVE, number: key })
         }}>
             <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1" >
                 <Checkout {...props} />
             </TabPane>
             <TabPane tab="KẾT QUẢ ĐẶT VÉ" key="2">
+                <KetQuaDatVe {...props} />
+            </TabPane>
+            <TabPane style={{}} tab={<NavLink to="/" className="text-black">TRANG CHỦ</NavLink>} key="3" >
                 <KetQuaDatVe {...props} />
             </TabPane>
         </Tabs>
@@ -325,3 +357,14 @@ function KetQuaDatVe(props) {
 
     </div>
 }
+
+
+
+
+const UserProfile = styled.div`
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`

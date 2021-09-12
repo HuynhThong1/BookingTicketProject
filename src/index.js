@@ -18,6 +18,7 @@ import * as signalR from '@aspnet/signalr';
 export const connection = new signalR.HubConnectionBuilder().withUrl(`${DOMAIN}/DatVeHub`).configureLogging(signalR.LogLevel.Information).build();
 
 
+
 connection.start().then(function () {
   ReactDOM.render(
 

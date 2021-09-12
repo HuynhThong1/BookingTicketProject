@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Register() {
     return (
-        <div>
-            Register
+        <div className="text-green-500">
+            Register dsadasdas
         </div>
     )
 }

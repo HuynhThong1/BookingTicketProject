@@ -16,6 +16,12 @@ import Checkout from "./pages/Checkout/Checkout";
 import CheckoutTemplate from "./templates/CheckoutTemplate/CheckoutTemplate";
 import { UserTemplate } from "./templates/UserTemplate/UserTemplate";
 import Loading from "./components/Loading/Loading";
+import Profile from "./pages/Profile/Profile";
+import { AdminTemplate } from "./templates/AdminTemplate/AdminTemplate";
+import Dashboard from "./pages/Admin/Dashboard/Dashboard";
+import Films from "./pages/Admin/Films/Films";
+import Users from "./pages/Admin/User/Users";
+import Showtime from "./pages/Admin/Showtime/Showtime";
 
 // const CheckoutTemplateLazy = lazy(() => import('./templates/CheckoutTemplate/CheckoutTemplate'));
 
@@ -32,11 +38,20 @@ function App() {
         <HomeTemplate path="/news" exact Component={News} />
         <HomeTemplate path="/detail/:id" exact Component={Detail} />
 
-        <Route path="/register" exact Component={Register} />
+        {/* <Route path="/register" exact Component={Register} /> */}
 
         <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} />
 
         <UserTemplate path="/login" exact Component={Login} />
+        <UserTemplate path="/register" exact Component={Register} />
+
+        <HomeTemplate path="/profile" exact Component={Profile} />
+
+        <AdminTemplate path="/admin" exact Component={Dashboard}/>
+        <AdminTemplate path="/admin/films" exact Component={Films}/>
+        <AdminTemplate path="/admin/users" exact Component={Users}/>
+        <AdminTemplate path="/admin/showtime" exact Component={Showtime}/>
+
         
 
 
