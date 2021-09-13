@@ -8,9 +8,6 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import {
     DesktopOutlined,
     PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-    UserOutlined,
 } from '@ant-design/icons';
 import { useSelector } from "react-redux";
 import { history } from "../../App";
@@ -18,7 +15,6 @@ import styled from "styled-components";
 
 
 const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
 
 
 export const AdminTemplate = (props) => { //path, exact, Component

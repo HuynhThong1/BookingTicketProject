@@ -7,7 +7,7 @@ import { CloseOutlined, CheckOutlined } from '@ant-design/icons'
 import { CHANGE_TAB_ACTIVE, DAT_GHE } from '../../redux/actions/types/QuanLyDatVeType';
 import _ from 'lodash';
 import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe';
-import { Tabs, Button } from 'antd';
+import { Tabs } from 'antd';
 import { layThongTinNguoiDungAction } from '../../redux/actions/QuanLyNguoiDungAction';
 import moment from 'moment';
 import { connection } from '../..';

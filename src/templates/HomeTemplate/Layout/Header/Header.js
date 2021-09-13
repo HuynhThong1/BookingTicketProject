@@ -14,14 +14,9 @@ export default function Header(props) {
   const renderLogin = () => {
     if (_.isEmpty(userLogin)) {
       return <Fragment>
-        <button className="self-center px-8 py-3 rounded" onClick={() => {
+        <button className="duration-500 self-center px-8 py-3 rounded border border-yellow-400 bg-yellow-400 hover:bg-white hover" onClick={() => {
           history.push('/login')
         }}>Login</button>
-        <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-coolGray-900" onClick={() => {
-          history.push('/register')
-        }}>
-          Register
-        </button>
       </Fragment>
     }
     return <Fragment>

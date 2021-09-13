@@ -14,8 +14,9 @@ export const UserTemplate = (props) => { //path, exact, Component
 
     return <Route {...restProps} render={(propsRoute) => { //props.location, props.history, props.match
         return <Fragment>
+            <Component {...propsRoute} />
 
-            <div className="lg:flex">
+            {/* <div className="lg:flex">
 
                 <Component {...propsRoute} />
 
@@ -58,7 +59,7 @@ export const UserTemplate = (props) => { //path, exact, Component
                     </div>
                 </div>
 
-            </div>
+            </div> */}
 
         </Fragment>
 
