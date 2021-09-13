@@ -43,7 +43,6 @@ function App() {
         <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} />
 
         <UserTemplate path="/login" exact Component={Login} />
-        <UserTemplate path="/register" exact Component={Register} />
 
         <HomeTemplate path="/profile" exact Component={Profile} />
 
