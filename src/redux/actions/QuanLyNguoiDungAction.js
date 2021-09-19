@@ -43,7 +43,6 @@ export const dangNhapAction = (thongTinDangNhap) => {
 }
 
 export const dangKyAction = (thongTinDangKy) => {
-    //dang nhap thanh` cong nhung password chuyen thanh` rong~.
     return async (dispatch) => {
         try {
             const result = await quanLyNguoiDungService.dangKy(thongTinDangKy);

@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { Route, Redirect, NavLink } from 'react-router-dom';
+import { Route, Redirect, NavLink, Link } from 'react-router-dom';
 import { ACCESS_TOKEN, USER_LOGIN } from "../../Util/setting";
 import _ from 'lodash';
 
@@ -72,7 +72,7 @@ export const AdminTemplate = (props) => { //path, exact, Component
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
                     <div className="logo p-5">
-                        <img src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png" alt="logo"/>
+                        <Link to="/"><img src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png" alt="logo"/></Link>
                     </div>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1" icon={<PieChartOutlined />}>

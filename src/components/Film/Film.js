@@ -1,5 +1,6 @@
+import moment from "moment";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Film(props) {
   const { film } = props;
@@ -8,7 +9,7 @@ export default function Film(props) {
     <div className="movie-card">
       <div className="movie-header film-image" style={{background: `url(${film.hinhAnh}), url('https://ss-images.saostar.vn/wp700/2019/09/09/6006388/ednccmou8aeqxdk.jpg')`}}>
         <div className="header-icon-container">
-          <a href="#test">
+          <a href={film.trailer}>
             <i className="fas fa-play header-icon"></i>
           </a>
         </div>
@@ -23,23 +24,13 @@ export default function Film(props) {
         </div>
         <div className="movie-info">
           <div className="info-section">
-            <label>Date &amp; Time</label>
-            <span>Tue 4 July - 05:00PM</span>
-          </div>
-          {/*date,time*/}
-          <div className="info-section">
-            <label>Screen</label>
-            <span>01</span>
-          </div>
-          {/*screen*/}
-          <div className="info-section">
-            <label>Row</label>
-            <span>H</span>
+            <label>Ngày &amp; Giờ</label>
+            <span>{moment(film.ngayKhoiChieu).format('MMM Do, h:mm a')}</span>
           </div>
           {/*row*/}
           <div className="info-section">
-            <label>Seat</label>
-            <span>15</span>
+            <label>Đánh giá</label>
+            <span>{film.danhGia}/10</span>
           </div>
           {/*seat*/}
         </div>

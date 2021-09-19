@@ -90,19 +90,19 @@ export default function Showtime(props) {
         <h3 className="text-2xl"> Tạo lịch chiếu - {props.match.params.tenphim} </h3>
         <img src={film.hinhAnh} alt="..." width={200} height={300}/>
         <Form.Item label="Hệ thống rạp">
-            <Select options={convertSelectHTR()} onChange={handleChangeHeThongRap} placeholder="Chọn hệ thống rạp" />,
+            <Select options={convertSelectHTR()} onChange={handleChangeHeThongRap} placeholder="Chọn hệ thống rạp" />
         </Form.Item>
         <Form.Item label="Cụm rạp">
-            <Select options={convertSelectCR()} onChange={handleChangeCumRap} placeholder="Chọn cụm rạp" />,
+            <Select options={convertSelectCR()} onChange={handleChangeCumRap} placeholder="Chọn cụm rạp" />
         </Form.Item>
         <Form.Item label="Ngày chiếu giờ chiếu">
-            <DatePicker format='DD/MM/YYYY/ hh:mm:ss' showTime onChange={onChangeDate} onOk={onOK}  />,
+            <DatePicker format='DD/MM/YYYY/ hh:mm:ss' showTime onChange={onChangeDate} onOk={onOK}  />
         </Form.Item>
         <Form.Item label="Giá vé">
-            <InputNumber min={75000} max={15000} onChange={onChangeInputNumber}  />,
+            <InputNumber min={75000} max={15000} onChange={onChangeInputNumber}  />
         </Form.Item>
         <Form.Item label="Tác vụ">
-            <Button htmlType="submit" >Tạo lịch Chiếu</Button>,
+            <Button htmlType="submit" >Tạo lịch Chiếu</Button>
         </Form.Item>
     </Form>
     )

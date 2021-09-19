@@ -86,7 +86,7 @@ const AddNew = () => {
           <Input name="email"  value={formik.values.email}/>
         </Form.Item>
         <Form.Item label="Loại User"  onChange={formik.handleChange}>
-          <Select options={convertSelectUser()} onChange={handleChangeLoaiUser} placeholder="Chọn loại người dùng!" />,
+          <Select options={convertSelectUser()} onChange={handleChangeLoaiUser} placeholder="Chọn loại người dùng!" />
         </Form.Item>
 
         <Form.Item label="Tác vụ">

@@ -4,7 +4,6 @@ import { dangKyAction, dangNhapAction } from '../../redux/actions/QuanLyNguoiDun
 import { useDispatch, useSelector } from 'react-redux';
 import "./Login.scss";
 import * as Yup from 'yup';
-import styled from 'styled-components';
 
 export default function Login(props) {
 
@@ -81,17 +80,6 @@ export default function Login(props) {
         classLogin = 'slide-up';
     }
 
-
-    let classLoginFail = '';
-
-    if(loginFail){
-        classLoginFail = 'hidden';
-    }else{
-        classLoginFail = '';
-    }
-
-
-
     return (
 
         <div className="flex justify-center items-center bg-black h-screen">
@@ -128,7 +116,7 @@ export default function Login(props) {
                                 <label>Mã Nhóm (GP01)</label>
                             </div>
                         </div>
-                        <button className="submit-btn">Sign up</button>
+                        <button className="submit-btn">Đăng Ký</button>
                     </form>
                 </div>
                 <div className={`login ${classLogin}`}>
@@ -151,23 +139,8 @@ export default function Login(props) {
                                 if(errors){
                                     setLoginFail(true);
                                 }
-                            }}>Log in</button>
+                            }}>Đăng Nhập</button>
                         </div>
-
-                        <div className={`${classLoginFail}`}>{errors ? (
-                        <LoginFail >
-                            <PopupLoginFail  className="text-center p-2">
-                                <h1 className="text-2xl mt-5">Đăng nhập Thất Bại</h1>
-                                <p style={{color: 'red', fontSize: 16}}>{errors}</p>
-                                <p>Vui lòng đăng nhập lại để vào hệ thống.</p>
-                                <div>
-                                    <button type="button" className="bg-red-500 w-full p-3 text-white rounded-md" onClick={() =>{
-                                        console.log('hello')
-                                        setLoginFail(true)
-                                    }}>Đóng</button>
-                                </div>
-                            </PopupLoginFail>
-                        </LoginFail>) : ''}</div>
                     </form>
                 </div>
             </div>
@@ -176,28 +149,6 @@ export default function Login(props) {
 }
 
 
-
-const LoginFail = styled.div`
-    position: fixed;
-    top: 0;
-    left:0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-`
-
-
-const PopupLoginFail = styled.div`
-    background-color: #fff;
-    min-height: 210px;
-    width: 300px;
-    color: #000;
-
-`
 
 
 
