@@ -11,7 +11,9 @@ import { useFormik } from 'formik';
 import { useDispatch, useSelector } from "react-redux";
 import { GROUPID } from '../../../../Util/setting';
 import { capNhatNguoiDungAction, layThongTinNguoiDungTheoTaiKhoanAction, layThongTinTaiKhoanAction } from '../../../../redux/actions/QuanLyNguoiDungAction';
+import { Row, Col, Divider  } from 'antd';
 const { Option } = Select;
+
 
 const Edit = (props) => {
   const [componentSize, setComponentSize] = useState('default');
@@ -67,8 +69,14 @@ const Edit = (props) => {
         onValuesChange={onFormLayoutChange}
         size={componentSize}
       >
-        <h3 className="text-3xl">Cập nhật thông tin tài khoản</h3>
-        <Form.Item label="Form Size" name="size">
+      <Row>
+        <Col xs={{span: 24}} xl={{span: 24}}>
+          <Divider orientation="left">Cập nhật thông tin tài khoản</Divider>
+        </Col>
+      </Row>
+      <Row>
+      <Col xs={{span: 24}} xl={{span: 12}} >
+      <Form.Item label="Form Size" name="size">
           <Radio.Group>
             <Radio.Button value="small">Small</Radio.Button>
             <Radio.Button value="default">Default</Radio.Button>
@@ -90,7 +98,6 @@ const Edit = (props) => {
         <Form.Item label="Email"  onChange={formik.handleChange}>
           <Input name="email"  value={formik.values.email}/>
         </Form.Item>
-        {console.log(formik.values.maLoaiNguoiDung)}
         <Form.Item label="Loại User"  onChange={formik.handleChange}>
           <Select  onChange={handleChangeLoaiUser}  defaultValue={formik.values.maLoaiNguoiDung}>
             <Option value="KhachHang">Khách hàng</Option>
@@ -103,6 +110,9 @@ const Edit = (props) => {
          Cập nhật
           </Button>
         </Form.Item>
+        </Col>
+        </Row>
+       
       </Form>
     </>
   );

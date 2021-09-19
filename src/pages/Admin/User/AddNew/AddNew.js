@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { themPhimUploadHinhAction } from '../../../../redux/actions/QuanLyPhimAction';
 import { GROUPID } from '../../../../Util/setting';
 import { themNguoiDungAction } from '../../../../redux/actions/QuanLyNguoiDungAction';
+import { Row, Col, Divider  } from 'antd';
+import noImage from '../../../../Images/NoImage.png';
 
 
 const AddNew = () => {
@@ -62,8 +64,14 @@ const AddNew = () => {
         onValuesChange={onFormLayoutChange}
         size={componentSize}
       >
-        <h3 className="text-3xl">Thêm mới người dùng</h3>
-        <Form.Item label="Form Size" name="size">
+      <Row>
+        <Col xs={{span: 24}} xl={{span: 24}}>
+          <Divider orientation="left">Thêm mới người dùng</Divider>
+        </Col>
+      </Row>
+      <Row>
+      <Col xs={{span: 24}} xl={{span: 12}} >
+      <Form.Item label="Form Size" name="size">
           <Radio.Group>
             <Radio.Button value="small">Small</Radio.Button>
             <Radio.Button value="default">Default</Radio.Button>
@@ -94,6 +102,8 @@ const AddNew = () => {
           Thêm người dùng
           </Button>
         </Form.Item>
+        </Col>
+      </Row>
       </Form>
     </>
   );

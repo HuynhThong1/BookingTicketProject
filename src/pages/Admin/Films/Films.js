@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 import { history } from '../../../App';
 import Swal from 'sweetalert2';
 import moment from 'moment';
+import { Row, Col, Divider  } from 'antd';
 
 
 const { Search } = Input;
@@ -154,13 +155,25 @@ export default function Films() {
 
 
     return (
-        <div className="">
-            <h3 className="text-4xl">Quản Lý Phim</h3>
-            <Button className="mt-5 mb-5" onClick={()=>{
-                history.push('/admin/films/addnew')
-            }}>Thêm Phim</Button>
-            <Search placeholder="Nhập để tìm phim" onSearch={onSearch} enterButton className="mb-5" />
-            <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maPhim"}/>
-        </div>
+        <>
+         <Row >
+            <Col span={24}>
+                <Divider orientation="left">Quản Lý Phim</Divider>
+             </Col>
+             <Col span={24}>
+                    <Button className="mt-5 mb-5" onClick={()=>{
+                        history.push('/admin/films/addnew')
+                    }}>Thêm Phim</Button>
+                  
+             </Col>
+             <Col span={6}>
+                <Search placeholder="Nhập để tìm phim" onSearch={onSearch} enterButton className="mb-5" />
+             </Col>
+            <Col span={24} style={{marginRight:10}}>
+                <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maPhim"} scroll={{ x: 400 }}/>
+            </Col>
+        </Row>
+        </>
+       
     )
 }
