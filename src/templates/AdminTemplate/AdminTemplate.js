@@ -71,9 +71,12 @@ export const AdminTemplate = (props) => { //path, exact, Component
 
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+                <NavLink className="navbar-brand" to="/">
                     <div className="logo p-5">
                         <img src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png" alt="logo"/>
                     </div>
+                    </NavLink>
+                  
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
                             <NavLink to="/admin">Dashboard</NavLink>

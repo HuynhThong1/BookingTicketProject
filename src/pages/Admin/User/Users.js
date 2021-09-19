@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 import { history } from '../../../App';
 import Swal from 'sweetalert2';
 import { layDanhSachNguoiDungAction, xoaNguoiDungAction } from '../../../redux/actions/QuanLyNguoiDungAction';
-
+import { Row, Col, Divider  } from 'antd';
 const { Search } = Input;
 
 export default function Users() {
@@ -141,13 +141,24 @@ export default function Users() {
 
 
     return (
-        <div className="">
-            <h3 className="text-4xl">Quản lý tài khoản</h3>
-            <Button className="mt-5 mb-5" onClick={()=>{
-                history.push('/admin/users/addnew')
-            }}>Thêm Tài khoản</Button>
-            <Search placeholder="Nhập để tìm tài khoản" onSearch={onSearch}  enterButton className="mb-5" />
-            <Table columns={columns} dataSource={data} onChange={onChange}  rowKey={"taiKhoan"}/>
-        </div>
+        <>
+        <Row >
+           <Col span={24}>
+               <Divider orientation="left">Quản lý tài khoản</Divider>
+            </Col>
+            <Col span={24}>
+                <Button className="mt-5 mb-5" onClick={()=>{
+                    history.push('/admin/users/addnew')
+                }}>Thêm Tài khoản</Button>
+                    
+            </Col>
+            <Col span={6}>
+                <Search placeholder="Nhập để tìm tài khoản" onSearch={onSearch}  enterButton className="mb-5" />
+            </Col>
+           <Col span={24} style={{marginRight:10}}>
+                <Table columns={columns} dataSource={data} onChange={onChange}  rowKey={"taiKhoan"} scroll={{ x: 400 }}/>
+           </Col>
+       </Row>
+       </>
     )
 }
