@@ -1,0 +1,35 @@
+.trapezoid {
+  border-bottom: 50px solid gray;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  height: 0;
+  width: 80%;
+  opacity: 0.4;
+  filter: drop-shadow(0px 112px 116px #000000);
+  -webkit-filter: drop-shadow(0px 112px 116px #000000);
+  -moz-filter: drop-shadow(0px 112px 116px #000000);
+}
+
+.ghe {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+  background-color: #7b7a7a;
+  color: #fff;
+}
+
+.gheDaDat {
+  background-color: #e84c4c;
+  cursor: no-drop;
+}
+
+.getDangDat {
+  background-color: #12c012 !important;
+}
+
+.gheVip {
+  background-color: #e44a08;
+}
+/*# sourceMappingURL=Checkout.module.css.map */

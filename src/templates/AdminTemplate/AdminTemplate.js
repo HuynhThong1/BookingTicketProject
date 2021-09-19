@@ -9,6 +9,7 @@ import {
     DesktopOutlined,
     PieChartOutlined,
     FileOutlined,
+    UserOutlined
 } from '@ant-design/icons';
 import { useSelector } from "react-redux";
 import { history } from "../../App";
@@ -30,7 +31,8 @@ export const AdminTemplate = (props) => { //path, exact, Component
     const onCollapse = collapsed => {
         setCollapsed(collapsed)
     };
-
+    const getPath = props.location.pathname;
+    const path = getPath.split("/");
     const { Component, ...restProps } = props;
 
     useEffect(() => {
@@ -74,19 +76,31 @@ export const AdminTemplate = (props) => { //path, exact, Component
                     </div>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
-                            <NavLink to="/admin/users">Users</NavLink>
+                            <NavLink to="/admin">Dashboard</NavLink>
+                            
                         </Menu.Item>
-                        <SubMenu key="sub1" icon={<DesktopOutlined />} title="Films">
-                            <Menu.Item key="2" icon={<FileOutlined />}>
-                                <NavLink to="/admin/films">Films</NavLink>
+                        {/* <Menu.Item key="2" icon={<UserOutlined />}>
+                            <NavLink to="/admin/users">Users</NavLink>
+                        </Menu.Item> */}
+                        <SubMenu key="sub1" icon={<UserOutlined />} title="Users">
+                            <Menu.Item key="2" icon={<UserOutlined />}>
+                                <NavLink to="/admin/users">Users</NavLink>
                             </Menu.Item>
                             <Menu.Item key="3" icon={<FileOutlined />}>
+                                <NavLink to="/admin/users/addnew">Add new</NavLink>
+                            </Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub2" icon={<DesktopOutlined />} title="Films">
+                            <Menu.Item key="4" icon={<FileOutlined />}>
+                                <NavLink to="/admin/films">Films</NavLink>
+                            </Menu.Item>
+                            <Menu.Item key="5" icon={<FileOutlined />}>
                                 <NavLink to="/admin/films/addnew">Add new</NavLink>
                             </Menu.Item>
                         </SubMenu>
-                        <Menu.Item key="4" icon={<DesktopOutlined />}>
+                        {/* <Menu.Item key="4" icon={<DesktopOutlined />}>
                             <NavLink to="/admin/showtime">Showtime</NavLink>
-                        </Menu.Item>
+                        </Menu.Item> */}
                         {/* <SubMenu key="sub1" icon={<UserOutlined />} title="User">
                             <Menu.Item key="3">Tom</Menu.Item>
                             <Menu.Item key="4">Bill</Menu.Item>
@@ -109,6 +123,11 @@ export const AdminTemplate = (props) => { //path, exact, Component
                         <Breadcrumb style={{ margin: '16px 0' }}>
                             {/* <Breadcrumb.Item>User</Breadcrumb.Item> 
                             <Breadcrumb.Item>Bill</Breadcrumb.Item> */}
+                             {path.map((v, index) => {
+                                console.log('page', v)
+                                return <Breadcrumb.Item><NavLink key={index} to={`/${v}`}>{v}</NavLink></Breadcrumb.Item>
+                            })
+                            }
                         </Breadcrumb>
                         <div className="bg-white h-full" style={{ padding: 24, minHeight: 360 }}>
                             <Component {...propsRoute} />

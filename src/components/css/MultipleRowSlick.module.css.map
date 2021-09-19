@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,AAAA,OAAO,EAAE,WAAW,AAAA,OAAO,CAAC;EAEnC,KAAK,EAAE,eAAe;EACtB,SAAS,EAAE,eAAe;CAC7B;;AAGD,AAAA,WAAW,CAAC;EACR,KAAK,EAAE,gBAAgB;CAC1B;;AAGD,AAAA,YAAY,CAAA;EACR,MAAM,CAAN,sBAAM;CACT;;AAGD,AAAA,iBAAiB,CAAA;EACb,MAAM,CAAN,sBAAM;CACT",
+    "sources": [
+        "../ReactSlick/MultipleRowSlick.module.scss"
+    ],
+    "names": [],
+    "file": "MultipleRowSlick.module.css"
+}

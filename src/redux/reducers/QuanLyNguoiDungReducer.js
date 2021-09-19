@@ -1,5 +1,5 @@
 import { ACCESS_TOKEN, USER_LOGIN } from "../../Util/setting";
-import { DANG_KY_ACTION, DANG_NHAP_ACTION, DANG_NHAP_THAT_BAI_ACTION, SET_THONG_TIN_NGUOI_DUNG } from "../actions/types/QuanLyNguoiDungType"
+import { DANG_KY_ACTION, DANG_NHAP_ACTION, DANG_NHAP_THAT_BAI_ACTION, SET_DANH_SACH_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG_THEO_TAI_KHOAN } from "../actions/types/QuanLyNguoiDungType"
 
 let user = {};
 
@@ -12,11 +12,10 @@ const stateDefault = {
     userLogin: user,
 
     thongTinNguoiDung: {},
-
-
+    danhSachNguoiDung: [],
+    thongTinNguoiDungTheoTaiKhoan: {},
     errors: '',
 
-    
 }
 
 
@@ -48,6 +47,16 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action ) => {
             state.thongTinNguoiDung = action.thongTinNguoiDung;
             return {...state}
         }
+        case SET_THONG_TIN_NGUOI_DUNG_THEO_TAI_KHOAN: {
+            state.thongTinNguoiDungTheoTaiKhoan = action.thongTinNguoiDungTheoTaiKhoan;
+            return {...state}
+        }
+        case SET_DANH_SACH_NGUOI_DUNG : {
+            state.danhSachNguoiDung = action.danhSachNguoiDung;
+            console.log('DanhSachNguoiDung',  state.danhSachNguoiDung )
+            return {...state}
+        }
+
     
         default: return {...state}
     }

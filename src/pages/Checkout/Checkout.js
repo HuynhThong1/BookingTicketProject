@@ -8,7 +8,7 @@ import { CHANGE_TAB_ACTIVE, DAT_GHE } from '../../redux/actions/types/QuanLyDatV
 import _ from 'lodash';
 import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe';
 import { Tabs } from 'antd';
-import { layThongTinNguoiDungAction } from '../../redux/actions/QuanLyNguoiDungAction';
+import { layThongTinTaiKhoanAction } from '../../redux/actions/QuanLyNguoiDungAction';
 import moment from 'moment';
 import { connection } from '../..';
 import { history } from '../../App';
@@ -313,7 +313,7 @@ function KetQuaDatVe(props) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const action = layThongTinNguoiDungAction();
+        const action = layThongTinTaiKhoanAction();
         dispatch(action)
     }, [dispatch])
 

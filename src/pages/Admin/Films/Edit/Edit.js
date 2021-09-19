@@ -6,6 +6,8 @@ import {
   DatePicker,
   InputNumber,
   Switch,
+  Image,
+  Button,
 } from 'antd';
 import { FormikConsumer, useFormik } from 'formik';
 import moment from 'moment';
@@ -110,7 +112,7 @@ const Edit = (props) => {
         onValuesChange={onFormLayoutChange}
         size={componentSize}
       >
-        <h3 className="text-3xl">Cập nhật phim</h3>
+        <h3 className="text-4xl">Cập nhật phim</h3>
         <Form.Item label="Form Size" name="size">
           <Radio.Group>
             <Radio.Button value="small">Small</Radio.Button>
@@ -144,11 +146,13 @@ const Edit = (props) => {
           <input type="file" onChange={handleChangeFile} accept="image/png, image/jpeg, image/jpg,image/png"/>
         </Form.Item>
        <Form.Item label="Ex:">
-        <img style={{width:150, height: 150}} src={imgSrc==='' ? thongTinPhim.hinhAnh : imgSrc} alt="..." /> 
+        <Image style={{width:150, height: 150}} src={imgSrc==='' ? thongTinPhim.hinhAnh : imgSrc} alt="..." /> 
         </Form.Item>
        
         <Form.Item label="Tác vụ">
-          <button type="submit" className="bg-blue-300 text-white"> Cập nhật</button>
+        <Button type="primary" htmlType="submit">
+         Cập nhật
+          </Button>
         </Form.Item>
       </Form>
     </>

@@ -6,6 +6,8 @@ import {
   DatePicker,
   InputNumber,
   Switch,
+  Button,
+  Image, 
 } from 'antd';
 import { FormikConsumer, useFormik } from 'formik';
 import moment from 'moment';
@@ -33,7 +35,7 @@ const AddNew = () => {
         hinhAnh: {},
       },
       onSubmit: (values) =>{
-  
+
         values.maNhom = GROUPID;
         let formData = new FormData();
         for (let key in values) {
@@ -102,7 +104,7 @@ const AddNew = () => {
         onValuesChange={onFormLayoutChange}
         size={componentSize}
       >
-        <h3 className="text-3xl">Thêm mới phim</h3>
+        <h3 className="text-4xl">Thêm mới phim</h3>
         <Form.Item label="Form Size" name="size">
           <Radio.Group>
             <Radio.Button value="small">Small</Radio.Button>
@@ -137,11 +139,13 @@ const AddNew = () => {
         
         </Form.Item>
         { imgSrc && ( <Form.Item label="Ex:">
-        <img style={{width:150, height: 150}} src={imgSrc} alt="..." /> 
+        <Image  style={{width:150, height: 150}} src={imgSrc} alt="..." /> 
         </Form.Item>)}
        
         <Form.Item label="Tác vụ">
-          <button type="submit" className="bg-blue-300 text-white"> Thêm phim</button>
+          <Button type="primary" danger htmlType="submit">
+          Thêm phim
+          </Button>
         </Form.Item>
       </Form>
     </>
