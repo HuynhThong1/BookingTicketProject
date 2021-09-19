@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import { Form, InputNumber, Button, DatePicker, Cascader, Select } from 'antd';
+import { Form, InputNumber, Button, DatePicker, Image, Select } from 'antd';
 import { quanLyRapService } from '../../../services/QuanLyRapService';
 import { useFormik } from 'formik';
 import moment from 'moment';
 import { quanLyDatVeService } from '../../../services/QuanLyDatVeService';
-
+import { Row, Col, Divider  } from 'antd';
 
 export default function Showtime(props) {
      const formik = useFormik({
@@ -87,23 +87,33 @@ export default function Showtime(props) {
         wrapperCol={{ span: 16 }}
         onSubmitCapture={formik.handleSubmit}
       >
-        <h3 className="text-2xl"> Tạo lịch chiếu - {props.match.params.tenphim} </h3>
-        <img src={film.hinhAnh} alt="..." width={200} height={300}/>
-        <Form.Item label="Hệ thống rạp">
-            <Select options={convertSelectHTR()} onChange={handleChangeHeThongRap} placeholder="Chọn hệ thống rạp" />,
-        </Form.Item>
-        <Form.Item label="Cụm rạp">
-            <Select options={convertSelectCR()} onChange={handleChangeCumRap} placeholder="Chọn cụm rạp" />,
-        </Form.Item>
-        <Form.Item label="Ngày chiếu giờ chiếu">
-            <DatePicker format='DD/MM/YYYY/ hh:mm:ss' showTime onChange={onChangeDate} onOk={onOK}  />,
-        </Form.Item>
-        <Form.Item label="Giá vé">
-            <InputNumber min={75000} max={15000} onChange={onChangeInputNumber}  />,
-        </Form.Item>
-        <Form.Item label="Tác vụ">
-            <Button htmlType="submit" >Tạo lịch Chiếu</Button>,
-        </Form.Item>
+        <Row>
+            <Col xs={{span: 24}} xl={{span: 24}}>
+            <Divider orientation="left">Tạo lịch chiếu - {props.match.params.tenphim} </Divider>
+            </Col>
+        </Row>  
+        <Row>
+            <Col xs={{span: 24}} xl={{span: 6}} >
+                <Image src={film.hinhAnh} alt="..." style={{width: '100%', height:'auto'}}/>
+            </Col>
+            <Col xs={{span: 24}} xl={{span: 12}} >
+                <Form.Item label="Hệ thống rạp">
+                <Select options={convertSelectHTR()} onChange={handleChangeHeThongRap} placeholder="Chọn hệ thống rạp" />
+            </Form.Item>
+            <Form.Item label="Cụm rạp">
+                <Select options={convertSelectCR()} onChange={handleChangeCumRap} placeholder="Chọn cụm rạp" />
+            </Form.Item>
+            <Form.Item label="Ngày chiếu giờ chiếu">
+                <DatePicker format='DD/MM/YYYY/ hh:mm:ss' showTime onChange={onChangeDate} onOk={onOK}  />
+            </Form.Item>
+            <Form.Item label="Giá vé">
+                <InputNumber min={75000} max={150000} onChange={onChangeInputNumber}  />
+            </Form.Item>
+            <Form.Item label="Tác vụ">
+                <Button htmlType="submit" >Tạo lịch Chiếu</Button>,
+            </Form.Item>
+            </Col>
+        </Row>
     </Form>
     )
 }
