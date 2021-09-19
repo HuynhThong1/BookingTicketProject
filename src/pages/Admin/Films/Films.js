@@ -1,12 +1,15 @@
 import React, { Fragment, useEffect } from 'react'
 
-import { Button, Table } from 'antd';
+import { Button, Table, Input, Image } from 'antd';
 
-import { Input, Space } from 'antd';
-import { AudioOutlined, EditOutlined, DeleteOutlined  } from '@ant-design/icons';
+import { AudioOutlined, EditOutlined, DeleteOutlined, CalendarOutlined  } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { layDanhSachPhimAction } from '../../../redux/actions/QuanLyPhimAction';
+import { layDanhSachPhimAction, xoaPhimAction } from '../../../redux/actions/QuanLyPhimAction';
 import { NavLink } from 'react-router-dom';
+import { history } from '../../../App';
+import Swal from 'sweetalert2';
+import moment from 'moment';
+
 
 const { Search } = Input;
 
@@ -18,8 +21,6 @@ const suffix = (
         }}
     />
 );
-
-const onSearch = value => console.log(value);
 
 export default function Films() {
 
@@ -33,9 +34,7 @@ export default function Films() {
 
         dispatch(layDanhSachPhimAction());
     }, [])
-
-    console.log('arrFilmDefault', arrFilmDefault)
-
+    
     const columns = [
         {
             title: 'Mã Phim',
@@ -50,7 +49,7 @@ export default function Films() {
             title: 'Hình Ảnh',
             dataIndex: 'hinhAnh',
             render: (text, film) => {
-                return <Fragment><img src={film.hinhAnh} alt={film.tenPhim} style={{ minHeight: 70, maxHeight: 70 }} width={50} onError={(e) => { e.target.onerror = null; e.target.src = "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png" }} /></Fragment>
+                return <Fragment><Image src={film.hinhAnh} alt={film.tenPhim} style={{ minHeight: 70, maxHeight: 70 }} width={50} onError={(e) => { e.target.onerror = null; e.target.src = "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png" }} /></Fragment>
             },
             sorter: (a, b) => a.age - b.age,
             width: '10%',
@@ -93,13 +92,47 @@ export default function Films() {
             sortDirections: ['descend', 'ascend'],
         },
         {
+            title: 'NGÀY KHỞI CHIẾU',
+            dataIndex: 'ngayKhoiChieu',
+            render: (text, film) => (<Fragment>
+                {moment(film.ngayKhoiChieu).format("DD/MM/YYYY")}
+            </Fragment>)
+        },
+        {
+            title: 'ĐÁNH GIÁ',
+            dataIndex: 'danhGia',
+            sorter: (a, b) => a.danhGia - b.danhGia,
+            sortDirections: ['descend', 'ascend'],
+        },
+        {
             title: 'Hành Động',
             dataIndex: 'hanhDong',
 
             render: (text, film) => (<Fragment>
                 
-                <NavLink className="hover:text-blue-400 text-xl text-black" to="/"><EditOutlined /> </NavLink>
-                <NavLink className="hover:text-red-800 text-xl text-black" to="/"><DeleteOutlined /> </NavLink>
+                <NavLink key={1} className="hover:text-blue-400 text-xl text-black" to={`/admin/films/edit/${film.maPhim}`}><EditOutlined /> </NavLink>
+                <NavLink key={2} className="hover:text-red-800 text-xl text-black"to={`/admin/films`} onClick={()=>{
+                    // if(window.confirm('Ban co chac muon xoa phim'+ film.tenPhim)){
+                    //     dispatch(xoaPhimAction(film.maPhim))
+                    // }
+                    Swal.fire({
+                        title: `Bạn có chắc muốn xóa phim !`,
+                        text: film.tenPhim,
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#fb4226',
+                        cancelButtonColor: 'rgb(167 167 167)',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            dispatch(xoaPhimAction(film.maPhim))
+                        }
+                    })
+                }}><DeleteOutlined /> </NavLink>
+                <NavLink key={3} className="hover:text-green-400 text-xl text-black" to={`/admin/films/showtime/${film.maPhim}/${film.tenPhim}`} onClick={()=>{
+                    localStorage.setItem('filmParams', JSON.stringify(film))
+                }}><CalendarOutlined /> </NavLink>
+
 
             </Fragment>)
 
@@ -114,14 +147,20 @@ export default function Films() {
     function onChange(pagination, filters, sorter, extra) {
         console.log('params', pagination, filters, sorter, extra);
     }
+    const onSearch = (value) => {
+        console.log(value)
+        dispatch(layDanhSachPhimAction(value))
+    }
 
 
     return (
         <div className="">
             <h3 className="text-4xl">Quản Lý Phim</h3>
-            <Button className="mt-5 mb-5">Thêm Phim</Button>
+            <Button className="mt-5 mb-5" onClick={()=>{
+                history.push('/admin/films/addnew')
+            }}>Thêm Phim</Button>
             <Search placeholder="Nhập để tìm phim" onSearch={onSearch} enterButton className="mb-5" />
-            <Table columns={columns} dataSource={data} onChange={onChange} />
+            <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maPhim"}/>
         </div>
     )
 }
