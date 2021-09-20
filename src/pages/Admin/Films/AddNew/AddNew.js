@@ -113,13 +113,13 @@ const AddNew = () => {
       </Row>
       <Row>
         <Col xs={{span: 24, order: 3}} xl={{span: 6, order: 1}} >
-          { imgSrc && ( <Form.Item style={{ display: 'flex', flex:1, justifyContent: 'center', height:'100%', width:'100%'}}>
+          { imgSrc && (
             <Image  style={{width:'100%', height: 'auto'}} src={imgSrc} alt="..." /> 
-            </Form.Item>)
+            )
           }
-            { !imgSrc && ( <Form.Item style={{ display: 'flex', flex:1, justifyContent: 'center', height:'auto', width:'100%'}}>
+            { !imgSrc && (
             <Image  style={{width:'100%', height: 'auto'}} src={noImage} alt="..." /> 
-            </Form.Item>)
+          )
           }
         </Col>
         <Col xs={{span: 24, order: 2}} xl={{span: 18, order: 2}} >

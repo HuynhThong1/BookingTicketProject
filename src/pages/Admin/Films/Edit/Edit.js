@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import {
   Form,
   Input,
@@ -8,6 +8,7 @@ import {
   Switch,
   Image,
   Button,
+  Popover,
 } from 'antd';
 import { FormikConsumer, useFormik } from 'formik';
 import moment from 'moment';
@@ -17,7 +18,7 @@ import { GROUPID } from '../../../../Util/setting';
 import { Row, Col, Divider  } from 'antd';
 import noImage from '../../../../Images/NoImage.png';
 
-const Edit = (props) => {
+const Edit = memo((props) => {
   const [componentSize, setComponentSize] = useState('default');
   const [imgSrc, setImgSrc] = useState('');
    const dispatch = useDispatch();
@@ -96,6 +97,7 @@ const Edit = (props) => {
     setComponentSize(size);
   };
 
+
   return (
     <>
       <Form
@@ -120,9 +122,7 @@ const Edit = (props) => {
       </Row>
       <Row>
       <Col xs={{span: 24, order: 3}} xl={{span: 6, order: 1}} >
-           <Form.Item style={{ display: 'flex', flex:1, justifyContent: 'center', height:'100%', width:'100%'}}>
-             <Image style={{width:150, height: 150}} src={imgSrc==='' ? thongTinPhim.hinhAnh : imgSrc} alt="..." /> 
-            </Form.Item>
+             <Image style={{width:'100%', height: 'auto'}} src={imgSrc==='' ? thongTinPhim.hinhAnh : imgSrc} alt="..." /> 
         </Col>
         <Col xs={{span: 24, order: 2}} xl={{span: 18, order: 2}} >
         <Form.Item label="Form Size" name="size">
@@ -172,6 +172,6 @@ const Edit = (props) => {
       </Form>
     </>
   );
-};
+});
 
 export default Edit;

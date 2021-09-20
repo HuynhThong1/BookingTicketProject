@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import {
   Form,
   Input,
@@ -15,7 +15,7 @@ import { Row, Col, Divider  } from 'antd';
 const { Option } = Select;
 
 
-const Edit = (props) => {
+const Edit = memo((props) => {
   const [componentSize, setComponentSize] = useState('default');
    const dispatch = useDispatch();
    const { thongTinNguoiDungTheoTaiKhoan } = useSelector(state => state.QuanLyNguoiDungReducer)
@@ -118,6 +118,6 @@ const Edit = (props) => {
       </Form>
     </>
   );
-};
+});
 
 export default Edit;

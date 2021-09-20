@@ -1,9 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react'
 
-import { Button, Table } from 'antd';
+import { Button, Table, Popover, Input } from 'antd';
 
-import { Input, Image } from 'antd';
-import {  EditOutlined, DeleteOutlined  } from '@ant-design/icons';
+import {  EditOutlined, DeleteOutlined, CalendarOutlined  } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { history } from '../../../App';
@@ -91,7 +90,7 @@ export default function Users() {
             responsive: ["sm"],
             render: (text, NguoiDung) => (<Fragment>
                 
-                <NavLink key={1} className="hover:text-blue-400 text-xl text-black" to={`/admin/users/edit/${NguoiDung.taiKhoan}`}><EditOutlined /> </NavLink>
+                <NavLink key={1} className="hover:text-blue-400 text-xl text-black" to={`/admin/users/edit/${NguoiDung.taiKhoan}`}><Popover content="Cập nhật"><EditOutlined /> </Popover></NavLink>
                 <NavLink key={2} className="hover:text-red-800 text-xl text-black"to={`/admin/users`} onClick={()=>{
                     // if(window.confirm('Bạn có chăc'+ NguoiDung.hoTen)){
                     //     dispatch(xoaNguoiDungAction(NguoiDung.taiKhoan))
@@ -109,7 +108,8 @@ export default function Users() {
                             dispatch(xoaNguoiDungAction(NguoiDung.taiKhoan))
                         }
                     })
-                }}><DeleteOutlined /> </NavLink>
+                }}><Popover content="Xoá"><DeleteOutlined />  </Popover></NavLink>
+                 <NavLink className="hover:text-green-400 text-xl text-black" to={`/admin/users/booked/${NguoiDung.taiKhoan}`}><Popover content="Danh sách phim đã đặt!"><CalendarOutlined /> </Popover></NavLink>
                 {/* <NavLink key={3} className="hover:text-green-400 text-xl text-black" to={`/admin/films/showtime/${film.maPhim}/${film.tenPhim}`} onClick={()=>{
                     localStorage.setItem('filmParams', JSON.stringify(film))
                 }}><CalendarOutlined /> </NavLink> */}

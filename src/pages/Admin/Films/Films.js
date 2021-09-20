@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 
-import { Button, Table, Input, Image } from 'antd';
+import { Button, Table, Input, Image, Popover } from 'antd';
 
 import { AudioOutlined, EditOutlined, DeleteOutlined, CalendarOutlined  } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -110,8 +110,7 @@ export default function Films() {
             dataIndex: 'hanhDong',
 
             render: (text, film) => (<Fragment>
-                
-                <NavLink key={1} className="hover:text-blue-400 text-xl text-black" to={`/admin/films/edit/${film.maPhim}`}><EditOutlined /> </NavLink>
+                <NavLink key={1} className="hover:text-blue-400 text-xl text-black" to={`/admin/films/edit/${film.maPhim}`}><Popover content="Cập nhật"> <EditOutlined /> </Popover> </NavLink>
                 <NavLink key={2} className="hover:text-red-800 text-xl text-black"to={`/admin/films`} onClick={()=>{
                     // if(window.confirm('Ban co chac muon xoa phim'+ film.tenPhim)){
                     //     dispatch(xoaPhimAction(film.maPhim))
@@ -129,10 +128,10 @@ export default function Films() {
                             dispatch(xoaPhimAction(film.maPhim))
                         }
                     })
-                }}><DeleteOutlined /> </NavLink>
+                }}><Popover content="Xoá phim"><DeleteOutlined /> </Popover> </NavLink>
                 <NavLink key={3} className="hover:text-green-400 text-xl text-black" to={`/admin/films/showtime/${film.maPhim}/${film.tenPhim}`} onClick={()=>{
                     localStorage.setItem('filmParams', JSON.stringify(film))
-                }}><CalendarOutlined /> </NavLink>
+                }}><Popover content="Tạo lịch chiếu"><CalendarOutlined /> </Popover> </NavLink>
 
 
             </Fragment>)
