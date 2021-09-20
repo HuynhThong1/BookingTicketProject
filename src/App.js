@@ -26,6 +26,7 @@ import AddNew from "./pages/Admin/Films/AddNew/AddNew";
 import Edit from "./pages/Admin/Films/Edit/Edit";
 import AddNewUser from "./pages/Admin/User/AddNew/AddNew";
 import EditUser from "./pages/Admin/User/Edit/Edit";
+import PageError from "./pages/PageError/PageError";
 
 
 // const CheckoutTemplateLazy = lazy(() => import('./templates/CheckoutTemplate/CheckoutTemplate'));
@@ -69,7 +70,7 @@ function App() {
         </Suspense> */}
 
         <HomeTemplate path="/" exact Component={Home} />
-
+        <Route parth="*" component={PageError} />
       </Switch>
 
     </Router>

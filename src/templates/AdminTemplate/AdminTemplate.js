@@ -3,8 +3,7 @@ import { Route, Redirect, NavLink } from 'react-router-dom';
 import { ACCESS_TOKEN, USER_LOGIN } from "../../Util/setting";
 import _ from 'lodash';
 
-import { Layout, Menu, Breadcrumb } from 'antd';
-
+import { Layout, Menu, Breadcrumb, Avatar, Select } from 'antd';
 import {
     DesktopOutlined,
     PieChartOutlined,
@@ -14,7 +13,7 @@ import {
 import { useSelector } from "react-redux";
 import { history } from "../../App";
 import styled from "styled-components";
-
+const { Option } = Select;
 const { SubMenu } = Menu;
 
 
@@ -50,21 +49,30 @@ export const AdminTemplate = (props) => { //path, exact, Component
         return <Redirect to='/' />
     }
 
+    const username = localStorage.getItem(USER_LOGIN) ? JSON.parse(localStorage.getItem(USER_LOGIN)).taiKhoan : '';
 
-    const operations = <Fragment>
-        {!_.isEmpty(userLogin) ? <Fragment>
-            <button onClick={() => {
-                history.push(`/profile`);
-            }}><UserProfile className="ml-5 rounded-full bg-red-200 text-xl">{userLogin.taiKhoan.substr(0, 1)}</UserProfile></button>
-            <button onClick={() => {
-                localStorage.removeItem(USER_LOGIN);
-                localStorage.removeItem(ACCESS_TOKEN);
-                history.push('/');
-                window.location.reload();
-            }} className="text-blue-800 ml-10">Đăng xuất</button>
-        </Fragment> : ''}
-    </Fragment>;
-
+    // const operations = <Fragment>
+    //     {!_.isEmpty(userLogin) ? <Fragment>
+    //         <button onClick={() => {
+    //             history.push(`/profile`);
+    //         }}><UserProfile className="ml-5 rounded-full bg-red-200 text-xl">{userLogin.taiKhoan.substr(0, 1)}</UserProfile></button>
+    //         <button onClick={() => {
+    //             localStorage.removeItem(USER_LOGIN);
+    //             localStorage.removeItem(ACCESS_TOKEN);
+    //             history.push('/');
+    //             window.location.reload();
+    //         }} className="text-blue-800 ml-10">Đăng xuất</button>
+    //     </Fragment> : ''}
+    // </Fragment>;
+    const handleChange = async (value) => {
+        if (value == 'logout') {
+            localStorage.removeItem(USER_LOGIN);
+            localStorage.removeItem(ACCESS_TOKEN);
+            history.push('/');
+            window.location.reload();
+    
+        }
+    }
 
     return <Route {...restProps} render={(propsRoute) => { //props.location, props.history, props.match
         return <Fragment>
@@ -119,8 +127,16 @@ export const AdminTemplate = (props) => { //path, exact, Component
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header className="" style={{padding: 0, backgroundColor: '#fff'}}>
-                        <div className="text-right pr-10 pt-1">{operations}</div>
+                    <Header className="" style={{padding: 0, backgroundColor: '#fff', alignItems: 'center', display:'flex', justifyContent: 'flex-end' }}>
+                        <div className="text-right pr-10 pt-1" style={{display:'flex', alignItems:'center', height:'auto'}}>
+                        <Avatar size="large" style={{ color: '#FFFFFF', backgroundColor: '#40ADFF', marginRight: "10px" }} icon={<UserOutlined onClick={()=>{
+                            history.push(`/profile`);
+                        }} />} />
+                        <Select value={username} style={{ width: 120 }} onChange={handleChange}>
+                            <Option value="logout" >Logout</Option>
+                        </Select>
+                        </div>
+                        {/* <div className="text-right pr-10 pt-1">{operations}</div> */}
                     </Header>
                     <Content style={{ margin: '0 16px' }}>
                         <Breadcrumb style={{ margin: '16px 0' }}>
