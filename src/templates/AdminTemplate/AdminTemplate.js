@@ -8,7 +8,8 @@ import {
     DesktopOutlined,
     PieChartOutlined,
     FileOutlined,
-    UserOutlined
+    UserOutlined,
+    InsertRowBelowOutlined
 } from '@ant-design/icons';
 import { useSelector } from "react-redux";
 import { history } from "../../App";
@@ -108,6 +109,12 @@ export const AdminTemplate = (props) => { //path, exact, Component
                             <Menu.Item key="5" icon={<FileOutlined />}>
                                 <NavLink to="/admin/films/addnew">Add new</NavLink>
                             </Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub3" icon={<InsertRowBelowOutlined />} title="MOfficeTicket">
+                            <Menu.Item key="6" icon={<FileOutlined />}>
+                                <NavLink to="/admin/films-shedule">Schedule Films</NavLink>
+                            </Menu.Item>
+
                         </SubMenu>
                         {/* <Menu.Item key="4" icon={<DesktopOutlined />}>
                             <NavLink to="/admin/showtime">Showtime</NavLink>

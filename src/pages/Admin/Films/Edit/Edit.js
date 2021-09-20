@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import {
   Form,
   Input,
@@ -8,6 +8,7 @@ import {
   Switch,
   Image,
   Button,
+  Popover,
 } from 'antd';
 import { FormikConsumer, useFormik } from 'formik';
 import moment from 'moment';
@@ -17,7 +18,7 @@ import { GROUPID } from '../../../../Util/setting';
 import { Row, Col, Divider  } from 'antd';
 import noImage from '../../../../Images/NoImage.png';
 
-const Edit = (props) => {
+const Edit = memo((props) => {
   const [componentSize, setComponentSize] = useState('default');
   const [imgSrc, setImgSrc] = useState('');
    const dispatch = useDispatch();
@@ -96,6 +97,7 @@ const Edit = (props) => {
     setComponentSize(size);
   };
 
+
   return (
     <>
       <Form
@@ -170,6 +172,6 @@ const Edit = (props) => {
       </Form>
     </>
   );
-};
+});
 
 export default Edit;
