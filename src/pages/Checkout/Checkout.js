@@ -306,8 +306,6 @@ function KetQuaDatVe(props) {
 
     const { thongTinNguoiDung } = useSelector(state => state.QuanLyNguoiDungReducer);
 
-    const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer);
-
 
 
     const dispatch = useDispatch();

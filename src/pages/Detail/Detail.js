@@ -9,6 +9,7 @@ import { Rate } from 'antd';
 import { Tabs, } from 'antd';
 import { layThongTinChiTietPhim } from '../../redux/actions/QuanLyRapAction';
 import { NavLink } from 'react-router-dom';
+import './Detail.scss';
 
 const { TabPane } = Tabs;
 
@@ -31,7 +32,7 @@ export default function Detail(props) {
         dispatch(layThongTinChiTietPhim(id));
 
 
-    }, [dispatch, id])
+    }, [])
 
 
     return (
@@ -65,8 +66,10 @@ export default function Detail(props) {
                         </div>
 
                         <div className="text-center">
-                            <div>
-                                <Rate style={{ color: '#ffe066 !important' }} allowHalf defaultValue={filmDetail.danhGia / 2} />
+                            <div className="star-icon">
+                                {/* <Rate style={{ color: '#ffe066 !important' }} allowHalf defaultValue={filmDetail.danhGia / 2} /> */}
+                            
+                                <Rate disabled allowHalf defaultValue={filmDetail.danhGia/2} />
                             </div>
                             <h3 className="text-xl text-red-500">{filmDetail.danhGia}/10 Đánh giá</h3>
                         </div>

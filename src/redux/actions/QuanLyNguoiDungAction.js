@@ -215,6 +215,8 @@ export const capNhatNguoiDungAction = (thongTinNguoiDung) => {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         dispatch(layDanhSachNguoiDungAction())
+
+                    
                     }
                 })
             }
