@@ -8,8 +8,12 @@ import { Rate } from 'antd';
 
 import { Tabs, } from 'antd';
 import { layThongTinChiTietPhim } from '../../redux/actions/QuanLyRapAction';
+import { USER_LOGIN } from "../../Util/setting";
+import Swal from 'sweetalert2'
+import { history } from '../../App';
 import { NavLink } from 'react-router-dom';
 import './Detail.scss';
+
 
 const { TabPane } = Tabs;
 
@@ -23,7 +27,20 @@ export default function Detail(props) {
     const dispatch = useDispatch();
 
     let { id } = props.match.params;
-
+    const clickMovie = () => {
+        Swal.fire({
+            icon: 'warning',
+            text: 'Bạn chưa đăng nhập! Hãy đăng nhập để tiếp tục',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng Ý!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                history.push('/login');
+            }
+        })
+    }
     useEffect(() => {
 
         //Lấy Thông tin từ đường dẫn
@@ -102,9 +119,15 @@ export default function Detail(props) {
                                                         </div>
                                                         <div className="thong-tin-lich-chieu grid grid-cols-6">
                                                             {cumRap.lichChieuPhim?.map((lichChieu, index) => {
-                                                                return <NavLink className="col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
+                                                                if (localStorage.getItem(USER_LOGIN)){
+                                                                    return <NavLink className="col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
                                                                     {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
                                                                 </NavLink>
+                                                                } else {
+                                                                    return <a  onClick={clickMovie} className="col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" key={index}>
+                                                                        {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
+                                                                    </a>
+                                                                }
                                                             })}
                                                         </div>
                                                     </div>
