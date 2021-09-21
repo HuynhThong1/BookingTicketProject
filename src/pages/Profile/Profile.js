@@ -36,14 +36,16 @@ export default function Profile() {
         setIsModalVisible(false);
     };
 
-    
 
     useEffect(() => {
-        const action = layThongTinTaiKhoanAction();
-        dispatch(action)
+        dispatch(layThongTinTaiKhoanAction())
         dispatch(layDanhSachNguoiDungAction());
+<<<<<<< HEAD
 
     }, [])
+=======
+    }, [dispatch])
+>>>>>>> 56c6638922e174e3052a82cba887ae53ddc28131
 
     console.log('danhSachNguoiDung', danhSachNguoiDung)
 
@@ -77,11 +79,15 @@ export default function Profile() {
         onSubmit: async (values) => {
 
             values.maNhom = GROUPID;
-
             await dispatch(capNhatNguoiDungAction(values));
+<<<<<<< HEAD
 
             // window.location.reload();
 
+=======
+            await setIsModalVisible(false);
+            await dispatch(layThongTinTaiKhoanAction())
+>>>>>>> 56c6638922e174e3052a82cba887ae53ddc28131
         }
     })
 

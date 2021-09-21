@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from "react";
 import { NavLink } from 'react-router-dom';
-import { Tabs } from "antd";
+import { Tabs,Row,Col } from "antd";
 import moment from "moment";
-
+import { USER_LOGIN } from "../../../Util/setting";
+import Swal from 'sweetalert2'
+import { history } from '../../../App';
 const { TabPane } = Tabs;
 
 export default function HomeMenu(props) {
@@ -12,6 +14,20 @@ export default function HomeMenu(props) {
     tabPosition: "left",
   });
   
+  const clickMovie = () => {
+    Swal.fire({
+        icon: 'warning',
+        text: 'Bạn chưa đăng nhập! Hãy đăng nhập để tiếp tục',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Đồng Ý!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            history.push('/login');
+        }
+    })
+}
 
   const { tabPosition } = state;
 
@@ -47,9 +63,15 @@ export default function HomeMenu(props) {
                       </div>
                       <div className="grid grid-cols-6 gap-4 mt-5">
                             {phim.lstLichChieuTheoPhim?.slice(0, 10).map((lichChieu, index) => {
-                              return <NavLink className="w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
+                              if (localStorage.getItem(USER_LOGIN)){
+                                return <NavLink className="w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
                                 {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
                               </NavLink>
+                              } else {
+                                return <a  onClick={clickMovie} className="w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" key={index}>
+                                    {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
+                                </a>
+                              }
                             })}
                       </div>
 
@@ -68,7 +90,13 @@ export default function HomeMenu(props) {
 
   return (
     <>
-      <Tabs tabPosition={tabPosition}>{renderHeThongRap()};</Tabs>
+     <div className="">
+            <Row className="">
+                <Col span={24}>
+                  <Tabs tabPosition={tabPosition}>{renderHeThongRap()};</Tabs>
+                </Col>
+            </Row>
+    </div>
     </>
   );
 }
