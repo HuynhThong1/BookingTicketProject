@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { GROUPID } from '../../Util/setting';
+import { SET_THONG_TIN_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG_THEO_TAI_KHOAN } from '../../redux/actions/types/QuanLyNguoiDungType';
 
 export default function Profile() {
 
@@ -42,7 +43,7 @@ export default function Profile() {
         dispatch(action)
         dispatch(layDanhSachNguoiDungAction());
 
-    }, [dispatch])
+    }, [])
 
     console.log('danhSachNguoiDung', danhSachNguoiDung)
 
@@ -79,7 +80,7 @@ export default function Profile() {
 
             await dispatch(capNhatNguoiDungAction(values));
 
-            window.location.reload();
+            // window.location.reload();
 
         }
     })
@@ -114,7 +115,7 @@ export default function Profile() {
                 <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white opacity-75 mx-6 lg:mx-0">
                     <div className="p-4 md:p-12 text-center lg:text-left">
                         {/* Image for mobile view*/}
-                        <div className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1560109947-543149eceb16?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80")' }} />
+                        <div className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: 'url("images/user.png")' }} />
                         <h1 className="text-3xl font-bold pt-8 lg:pt-0">{thongTinNguoiDung.hoTen}</h1>
                         <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25" />
                         <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">Email: {thongTinNguoiDung.email}</p>
@@ -155,7 +156,7 @@ export default function Profile() {
                                     <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="matKhau" type="password" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.matKhau}></input>
                                 </div>
 
-                                <div className="text-right mt-2">
+                                <div className="text-right mt-5">
                                     <Button type="primary" htmlType="submit" className="bg-blue-700 hover:bg-blue-900">Cập Nhật</Button>
                                 </div>
                             </form>

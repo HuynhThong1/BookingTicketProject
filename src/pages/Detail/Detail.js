@@ -32,7 +32,7 @@ export default function Detail(props) {
         dispatch(layThongTinChiTietPhim(id));
 
 
-    }, [])
+    }, [filmDetail, dispatch, id])
 
 
     return (

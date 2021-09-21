@@ -3,7 +3,7 @@ import { Carousel } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { layCarouselAction } from "../../../../redux/actions/CarouselAction";
 
-import './HomeCarousel.css';
+import './HomeCarousel.scss';
 
 const contentStyle = {
   height: "600px",
@@ -22,7 +22,7 @@ export default function HomeCarousel(props) {
   //Active when component loaded
 
   useEffect(() => {
-    
+
     dispatch(layCarouselAction())
 
   }, [dispatch]);
@@ -41,5 +41,8 @@ export default function HomeCarousel(props) {
     });
   };
 
-  return <Carousel style={{width:'100%',padding:0,margin:0}} effect="fade">{renderImg()}</Carousel>;
+
+  return <Carousel style={{ width: '100%', padding: 0, margin: 0 }}>
+    {renderImg()}
+  </Carousel>;
 }

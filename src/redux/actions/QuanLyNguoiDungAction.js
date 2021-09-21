@@ -200,13 +200,8 @@ export const themNguoiDungAction = (thongTinUser) => {
 
 export const capNhatNguoiDungAction = (thongTinNguoiDung) => {
     return async (dispatch) => {
-
         try {
-
-
             const result = await quanLyNguoiDungService.capNhatNguoiDung(thongTinNguoiDung);
-
-
             if (result.status === 200) {
                 Swal.fire({
                     title: 'Cập nhật thành công!',
@@ -215,15 +210,10 @@ export const capNhatNguoiDungAction = (thongTinNguoiDung) => {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         dispatch(layDanhSachNguoiDungAction())
-
-                    
                     }
                 })
             }
-
             console.log('result', result);
-
-
         } catch (errors) {
             Swal.fire({
                 icon: 'Cập nhật thất bại!',

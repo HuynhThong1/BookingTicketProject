@@ -38,8 +38,6 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action ) => {
         }
 
         case DANG_NHAP_THAT_BAI_ACTION: {
-
-
             return {...state, errors: action.payload};
         }
 
