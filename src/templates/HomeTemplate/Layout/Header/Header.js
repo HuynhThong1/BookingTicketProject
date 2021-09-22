@@ -74,18 +74,18 @@ export default function Header(props) {
             </NavLink>
           </li>
           <li className="flex">
-            <NavLink to="/"
+            <a href="#phim"
               className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-black hover:text-yellow-400 duration-300" activeClassName="border-b-2 border-white"
             >
-              Liên Lạc
-            </NavLink>
+              Phim
+            </a>
           </li>
           <li className="flex">
-            <NavLink to="/"
+            <a href="#cumrap"
               className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-black hover:text-yellow-400 duration-300" activeClassName="border-b-2 border-white"
             >
-              Tin Tức
-            </NavLink>
+              Cụm Rạp
+            </a>
           </li>
         </ul>
 
@@ -113,7 +113,7 @@ export default function Header(props) {
 
       {sidebar ? (
         <Fragment>
-          <div className={`lg:hidden sidebar h-screen bg-gray-50 text-gray-900 w-64 px-2 space-y-6 py-4 absolute md:relative md:translate-x-0 inset-y-0 left-0 transform  transition duration-200 ease-in-out z-50`}>
+          <div className={`lg:hidden sidebar h-screen bg-gray-50 text-gray-900 w-64 px-2 space-y-6 py-4 absolute top-0 right-0  inset-y-0 left-0 transform  transition duration-200 ease-in-out z-50`}>
             {/* logo */}
             <a href="#123123" className="text-gray-900 flex items-center px-4" alt="...">
               <img src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png" alt="cybersoft.edu.vn" />
@@ -123,8 +123,8 @@ export default function Header(props) {
             {/* nav */}
             <nav>
               <Link to="/" className="block py-2 px-4 rounded hover:bg-yellow-400 hover:text-black transition duration-200 text-black" onClick={showSidebar}>Trang Chủ</Link>
-              <Link to="/*" className="block py-2 px-4 rounded hover:bg-yellow-400 hover:text-black transition duration-200 text-black" onClick={showSidebar}>Liên Lạc</Link>
-              <Link to="/*" className="block py-2 px-4 rounded hover:bg-yellow-400 hover:text-black transition duration-200 text-black" onClick={showSidebar}>Tin Tức</Link>
+              <Link to="#phim" className="block py-2 px-4 rounded hover:bg-yellow-400 hover:text-black transition duration-200 text-black" onClick={showSidebar}>Phim</Link>
+              <Link to="#cumrap" className="block py-2 px-4 rounded hover:bg-yellow-400 hover:text-black transition duration-200 text-black" onClick={showSidebar}>Cụm Rạp</Link>
               {renderLoginMobile()}
             </nav>
           </div>

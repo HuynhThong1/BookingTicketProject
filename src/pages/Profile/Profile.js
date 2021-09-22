@@ -11,7 +11,6 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { GROUPID } from '../../Util/setting';
-import { SET_THONG_TIN_NGUOI_DUNG, SET_THONG_TIN_NGUOI_DUNG_THEO_TAI_KHOAN } from '../../redux/actions/types/QuanLyNguoiDungType';
 
 export default function Profile() {
 
@@ -40,12 +39,7 @@ export default function Profile() {
     useEffect(() => {
         dispatch(layThongTinTaiKhoanAction())
         dispatch(layDanhSachNguoiDungAction());
-<<<<<<< HEAD
-
-    }, [])
-=======
     }, [dispatch])
->>>>>>> 56c6638922e174e3052a82cba887ae53ddc28131
 
     console.log('danhSachNguoiDung', danhSachNguoiDung)
 
@@ -80,14 +74,8 @@ export default function Profile() {
 
             values.maNhom = GROUPID;
             await dispatch(capNhatNguoiDungAction(values));
-<<<<<<< HEAD
-
-            // window.location.reload();
-
-=======
             await setIsModalVisible(false);
             await dispatch(layThongTinTaiKhoanAction())
->>>>>>> 56c6638922e174e3052a82cba887ae53ddc28131
         }
     })
 
@@ -110,7 +98,7 @@ export default function Profile() {
         })
     }
 
-    
+
 
 
 

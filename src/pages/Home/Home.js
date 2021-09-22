@@ -27,16 +27,16 @@ export default function Home(props) {
 
     <div>
       <HomeCarousel />
-      
+
       <div className="container mx-auto">
-        <section className="text-gray-600 body-font">
+        <section id="phim" className="text-gray-600 body-font">
           <div className="container px-5 py-24 mx-auto">
             <MultipleRowSlick arrFilm={arrFilm} />
 
           </div>
         </section>
 
-        <div >
+        <div id="cumrap">
           <HomeMenu heThongRapChieu={heThongRapChieu} />
         </div>
       </div>
