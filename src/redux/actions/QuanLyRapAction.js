@@ -7,12 +7,11 @@ export const layDanhSachRapAction = () => {
             const result = await quanLyRapService.layDanhSachHeThongRap();
             console.log('result', result.data.content);
 
-            if(result.status === 200){
-                dispatch({type: SET_HE_THONG_RAP_CHIEU, heThongRapChieu: result.data.content})
+            if (result.status === 200) {
+                dispatch({ type: SET_HE_THONG_RAP_CHIEU, heThongRapChieu: result.data.content })
             }
 
-        }catch(errors)
-        {
+        } catch (errors) {
             console.log('errors', errors.response?.data);
         }
     }
@@ -23,7 +22,7 @@ export const layThongTinChiTietPhim = (id) => {
     return async dispatch => {
         try {
             const result = await quanLyRapService.layThongTinLichChieuPhim(id);
-            console.log('result', result.data.content);
+            console.log('result alo', result.data.content);
             //Lấy được dữ liệu từ api về => đưa lên reducer
 
 
@@ -32,8 +31,7 @@ export const layThongTinChiTietPhim = (id) => {
                 filmDetail: result.data.content
             })
 
-        }catch(errors)
-        {
+        } catch (errors) {
             console.log('errors', errors.response?.data);
         }
     }

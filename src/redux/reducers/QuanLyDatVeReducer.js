@@ -62,9 +62,9 @@ export const QuanLyDatVeReducer = (state = stateDefault, action) => {
             return { ...state }
         }
 
-        case DAT_GHE : {
+        case DAT_GHE: {
             state.danhSachGheKhachDat = action.payload;
-            return {...state};
+            return { ...state };
         }
 
         default: return { ...state }

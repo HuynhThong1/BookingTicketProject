@@ -1,5 +1,5 @@
 // ghế thường
-.ghe{ 
+.ghe {
     width: 25px;
     height: 25px;
     border-radius: 5px;
@@ -8,63 +8,207 @@
     background-color: rgb(123, 122, 122);
     color: #fff;
     // padding: 6.2px 0 6.2px 0;
-    
-
 }
 
-.gheDaDat{
-    background-color: rgb(232,76,76) !important;
+.gheDaDat {
+    background-color: rgb(232, 76, 76) !important;
     cursor: no-drop;
+    color: #fff !important;
 }
 
-.gheDangDat{
+.gheDangDat {
     background-color: rgb(18, 192, 18) !important;
     color: black;
-
 }
 
-.gheVip{
+.gheVip {
     background-color: rgba(243, 145, 18, 0.452);
     color: black;
 }
 
 //ghe do chính mình đặt
-.gheDaDuocDat{
+.gheDaDuocDat {
     background-color: rgb(246, 246, 246) !important;
     -webkit-box-shadow: -1px 2px 10px -6px orange;
     box-shadow: -1px 2px 18px -6px orange;
     color: orange !important;
     border: 1px solid #000;
-
 }
 
-
-.gheKhachDat{
-    background-color: rgb(242, 25, 191) !important;
+.gheKhachDat {
+    background-color: rgb(25, 112, 242) !important;
+    color: #000 !important;
     cursor: no-drop;
-    
 }
 
-
-
-
-.scroll__bar__custom::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
+.scroll__bar__custom::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
 }
 
-.scroll__bar__custom::-webkit-scrollbar
-{
+.scroll__bar__custom::-webkit-scrollbar {
     cursor: pointer;
-	width: 4px;
-	background-color: #F5F5F5;
+    width: 4px;
+    background-color: #f5f5f5;
 }
 
-.scroll__bar__custom::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #555;
+.scroll__bar__custom::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #555;
+}
+
+//checkout in ipad
+.checkout-header {
+    position: fixed;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 3;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+
+    .left {
+        .backButton {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translate3d(0, -50%, 0);
+            width: 15px;
+        }
+    }
+
+    .center {
+        .steptitle {
+            width: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            max-width: 170px;
+            font-size: 14px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+
+    .right {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        .account {
+            position: relative;
+            padding-right: 10px;
+            cursor: pointer;
+            height: 120px;
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+}
+
+.seatCheckout {
+    margin-left: 0 !important;
+    margin-top: 60px;
+    margin-bottom: 70px;
+    padding-top: 0 !important;
+    width: 100% !important;
+
+    .top-content {
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 30px;
+
+        .left-title {
+            .logo-cinema {
+                text-align: center;
+                width: 8%;
+                margin-right: 13px;
+                height: 100%;
+                img {
+                    margin-top: 7px;
+                }
+            }
+            .content-cinema {
+                text-align: left;
+
+                .andress {
+                    margin-top: 1px;
+
+                    .p-cinema {
+                        font-size: 16px;
+                    }
+
+                    .cinema-name {
+                        font-size: 16px;
+                    }
+                }
+
+                .hour {
+                    line-height: 5px;
+                    font-size: 14px;
+                    color: #9b9b9b;
+                }
+            }
+        }
+        .right-title {
+            width: 150px;
+            margin-top: 10px;
+        }
+    }
+
+    .seat-map {
+        margin-top: 10px;
+        .panzoom {
+            margin: auto;
+            text-align: center;
+        }
+    }
+}
+
+.checkout-footer {
+    z-index: 3;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background: #fefdfb;
+    box-shadow: 0 -1px 0 0 #dadada, 0 1px 0 0 #dadada;
+
+    .total {
+        position: relative;
+        height: 70px !important;
+        padding-top: 2%;
+        text-align: center;
+
+        .seat-chosen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            text-align: center;
+            width: 85%;
+            font-size: 15px;
+            color: #44c020 !important;
+        }
+    }
+
+    .continue-button {
+        height: 70px;
+        padding-top: 3% !important;
+        cursor: pointer;
+        font-size: 19px;
+        text-align: center;
+        color: #e9e9e9 !important;
+        background: #44c020;
+    }
+
+    .continue-button.disabled {
+        background-image: none;
+        background-color: #afafaf;
+        pointer-events: none;
+    }
 }

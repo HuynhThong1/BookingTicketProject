@@ -29,6 +29,8 @@ import EditUser from "./pages/Admin/User/Edit/Edit";
 import PageError from "./pages/PageError/PageError";
 import UserBooked from "./pages/Admin/UserBooked/UserBooked";
 import FilmShedule from "./pages/Admin/FilmSchedule/FilmsSchedule";
+import CheckoutMobile from "./pages/Checkout/CheckoutMobile";
+import CheckoutIpad from "./pages/Checkout/CheckoutIpad";
 
 
 // const CheckoutTemplateLazy = lazy(() => import('./templates/CheckoutTemplate/CheckoutTemplate'));
@@ -38,7 +40,7 @@ export const history = createBrowserHistory();
 function App() {
   return (
     <Router history={history}>
-      <Loading/>
+      <Loading />
 
       <Switch>
         <HomeTemplate path="/home" exact Component={Home} />
@@ -48,26 +50,26 @@ function App() {
 
         {/* <Route path="/register" exact Component={Register} /> */}
 
-        <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} />
+        <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} ComponentMobile={CheckoutMobile} ComponentIpad={CheckoutIpad} />
 
         <UserTemplate path="/login" exact Component={Login} />
 
         <HomeTemplate path="/profile" exact Component={Profile} />
 
-        <AdminTemplate path="/admin" exact Component={Dashboard}/>
-        <AdminTemplate path="/admin/films" exact Component={Films}/>
-        <AdminTemplate path="/admin/films/addnew" exact Component={AddNew}/>
-        <AdminTemplate path="/admin/films/edit/:id" exact Component={Edit}/>
-        <AdminTemplate path="/admin/films/showtime/:id/:tenphim" exact Component={Showtime}/>
-        <AdminTemplate path="/admin/users" exact Component={Users}/>
-        <AdminTemplate path="/admin/users/addnew" exact Component={AddNewUser}/>
-        <AdminTemplate path="/admin/users/edit/:taiKhoan" exact Component={EditUser}/>
-        <AdminTemplate path="/admin/users/booked/:taiKhoan" exact Component={UserBooked}/>
+        <AdminTemplate path="/admin" exact Component={Dashboard} />
+        <AdminTemplate path="/admin/films" exact Component={Films} />
+        <AdminTemplate path="/admin/films/addnew" exact Component={AddNew} />
+        <AdminTemplate path="/admin/films/edit/:id" exact Component={Edit} />
+        <AdminTemplate path="/admin/films/showtime/:id/:tenphim" exact Component={Showtime} />
+        <AdminTemplate path="/admin/users" exact Component={Users} />
+        <AdminTemplate path="/admin/users/addnew" exact Component={AddNewUser} />
+        <AdminTemplate path="/admin/users/edit/:taiKhoan" exact Component={EditUser} />
+        <AdminTemplate path="/admin/users/booked/:taiKhoan" exact Component={UserBooked} />
         {/* <AdminTemplate path="/admin/films-shedule" exact component={FilmShedule} /> */}
 
         {/* <AdminTemplate path="/admin/showtime" exact Component={Showtime}/> */}
 
-        
+
 
 
         {/* <Suspense fallback={<h1>Loading...</h1>}>

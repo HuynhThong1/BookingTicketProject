@@ -122,7 +122,7 @@ function Checkout(props) {
                     dispatch(datGheAction(ghe, props.match.params.id))
                 }} key={index} style={{ fontSize: 11 }}>
 
-                    {ghe.daDat ? classGheDaDuocDat !== '' ? <CheckOutlined style={{ fontWeight: 'bold' }} /> : <CloseOutlined style={{ fontWeight: 'bold' }} /> : classGheKhachDat !== '' ? 'he' : ghe.stt}
+                    {ghe.daDat ? classGheDaDuocDat !== '' ? <CheckOutlined style={{ fontWeight: 'bold' }} /> : <CloseOutlined style={{ fontWeight: 'bold' }} /> : classGheKhachDat !== '' ? ghe.stt : ghe.stt}
                     {/* {classGheDangDat !== '' ? ghe.stt : ''} */}
 
                 </button>
@@ -154,8 +154,8 @@ function Checkout(props) {
                                 <tr>
                                     <th>Ghế chưa đặt</th>
                                     <th>Ghế đang đặt</th>
-                                    <th>Ghế đã đặt</th>
-                                    <th>Ghế vip đặt</th>
+                                    <th>Ghế đã được đặt</th>
+                                    <th>Ghế vip</th>
                                     <th>Ghế bạn đã đặt</th>
                                     <th>Ghế người khác đang đặt</th>
                                 </tr>
@@ -258,7 +258,7 @@ export default function CheckoutTab(props) {
 
     useEffect(() => {
         return () => {
-            dispatch({type: CHANGE_TAB_ACTIVE, number: '1'})
+            dispatch({ type: CHANGE_TAB_ACTIVE, number: '1' })
         }
     }, [])
 
@@ -336,11 +336,10 @@ function KetQuaDatVe(props) {
                     </div>
                 </div>
             </div>
-        })
+        }).reverse()
     }
 
     return <div className="p-5">
-        <h3>Kết Quả Đặt Vé</h3>
         <section className="text-gray-600 body-font">
             <div className="container px-5 mx-auto">
                 <div className="flex flex-col text-center w-full mb-10">

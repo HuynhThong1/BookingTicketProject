@@ -49,7 +49,7 @@ export default function Detail(props) {
         dispatch(layThongTinChiTietPhim(id));
 
 
-    }, [filmDetail, dispatch, id])
+    }, [])
 
 
     return (
@@ -85,8 +85,8 @@ export default function Detail(props) {
                         <div className="text-center">
                             <div className="star-icon">
                                 {/* <Rate style={{ color: '#ffe066 !important' }} allowHalf defaultValue={filmDetail.danhGia / 2} /> */}
-                            
-                                <Rate disabled allowHalf defaultValue={filmDetail.danhGia/2} />
+
+                                <Rate disabled allowHalf defaultValue={filmDetail.danhGia / 2} />
                             </div>
                             <h3 className="text-xl text-red-500">{filmDetail.danhGia}/10 Đánh giá</h3>
                         </div>
@@ -118,15 +118,15 @@ export default function Detail(props) {
                                                             </div>
                                                         </div>
                                                         <div className="thong-tin-lich-chieu grid grid-cols-6">
-                                                            {cumRap.lichChieuPhim?.map((lichChieu, index) => {
-                                                                if (localStorage.getItem(USER_LOGIN)){
+                                                            {cumRap.lichChieuPhim?.slice(0, 12).map((lichChieu, index) => {
+                                                                if (localStorage.getItem(USER_LOGIN)) {
                                                                     return <NavLink className="col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
-                                                                    {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
-                                                                </NavLink>
-                                                                } else {
-                                                                    return <a  onClick={clickMovie} className="col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" key={index}>
                                                                         {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
-                                                                    </a>
+                                                                    </NavLink>
+                                                                } else {
+                                                                    return <span onClick={clickMovie} className="cursor-pointer col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" key={index}>
+                                                                        {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
+                                                                    </span>
                                                                 }
                                                             })}
                                                         </div>
