@@ -82,7 +82,7 @@ export default function Login(props) {
 
     return (
 
-        <div className="flex justify-center items-center bg-black h-screen">
+        <div className="flex justify-center items-center bg-login h-screen">
             <div className="form-structure">
                 <div className={`signup ${classRegister}`}>
                     <h2 className="form-title" id="signup" onClick={(e) => {

@@ -8,7 +8,8 @@ export const getInfoFilmSheduleAdmin = (maPhim) =>{
         try {
             const result = await quanLyLichPhimService.getInfoFilmSheduleAdmin(maPhim);
             if (result.status === 200) {
-                dispatch({ type: GET_FILM_SHEDULE, listFilmShedule: result.data.content });
+                console.log('data get info ', result.data?.content)
+                dispatch({ type: GET_FILM_SHEDULE, listFilmShedule: result.data?.content });
            }
 
         } catch (errors) {
@@ -22,7 +23,7 @@ export const getInfoFilmSheduleByCinema = (maHeThongRap) =>{
         try {
             const result = await quanLyLichPhimService.getInfoFilmSheduleByCinema(maHeThongRap);
             if (result.status === 200) {
-                dispatch({ type: GET_FILM_SHEDULE_BY_CINEMA, listFilmSheduleCinema: result.data.content });
+                dispatch({ type: GET_FILM_SHEDULE_BY_CINEMA, listFilmSheduleCinema: result.data?.content });
            }
         } catch (errors) {
             console.log(errors);

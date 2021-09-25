@@ -74,6 +74,20 @@ export const AdminTemplate = (props) => { //path, exact, Component
     
         }
     }
+    const ListRouter = (props) => {
+        switch (props) {
+            case 'admin':
+                return `/admin`;
+            case 'user':
+                return `/admin/users`;
+            case 'films':
+                return `/admin/films`;
+            case 'films-shedule':
+                return `/admin/films-shedule`;
+            default: 
+                return 'other'
+        }
+    }
 
     return <Route {...restProps} render={(propsRoute) => { //props.location, props.history, props.match
         return <Fragment>
@@ -149,9 +163,10 @@ export const AdminTemplate = (props) => { //path, exact, Component
                         <Breadcrumb style={{ margin: '16px 0' }}>
                             {/* <Breadcrumb.Item>User</Breadcrumb.Item> 
                             <Breadcrumb.Item>Bill</Breadcrumb.Item> */}
+                
                              {path.map((v, index) => {
-                                console.log('page', v)
-                                return <Breadcrumb.Item><NavLink key={index} to={`/${v}`}>{v}</NavLink></Breadcrumb.Item>
+                                console.log('page',v )
+                                return <Breadcrumb.Item><NavLink key={index} to={ListRouter(v)==='other' ? `/${v}` : ListRouter(v)}>{v}</NavLink></Breadcrumb.Item>
                             })
                             }
                         </Breadcrumb>
