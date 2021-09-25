@@ -15,8 +15,6 @@ import moment from 'moment';
 
 export default function CheckoutIpad(props) {
 
-
-
     //modal antd
     const [isModalVisible, setIsModalVisible] = useState(false);
 
