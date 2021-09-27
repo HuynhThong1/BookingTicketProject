@@ -5,24 +5,24 @@
     border-radius: 5px;
     cursor: pointer;
     margin: 15px 10px 10px 10px;
-    background-color: rgb(123, 122, 122);
+    background-color: rgb(116, 113, 113);
     color: #fff;
     // padding: 6.2px 0 6.2px 0;
 }
 
 .gheDaDat {
-    background-color: rgb(232, 76, 76) !important;
+    background-color: #ff4848 !important;
     cursor: no-drop;
     color: #fff !important;
 }
 
 .gheDangDat {
-    background-color: rgb(18, 192, 18) !important;
+    background-color: #44c020 !important;
     color: black;
 }
 
 .gheVip {
-    background-color: rgba(243, 145, 18, 0.452);
+    background-color: #ffb319;
     color: black;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .gheKhachDat {
-    background-color: rgb(25, 112, 242) !important;
+    background-color: rgba(0, 0, 0, 0.267) !important;
     color: #000 !important;
     cursor: no-drop;
 }
@@ -136,7 +136,7 @@
             .content-cinema {
                 text-align: left;
 
-                .andress {
+                .address {
                     margin-top: 1px;
 
                     .p-cinema {
@@ -180,7 +180,7 @@
 
     .total {
         position: relative;
-        height: 70px !important;
+        height: 70px;
         padding-top: 2%;
         text-align: center;
 
@@ -191,7 +191,7 @@
             transform: translate3d(-50%, -50%, 0);
             text-align: center;
             width: 85%;
-            font-size: 15px;
+            font-size: 12px;
             color: #44c020 !important;
         }
     }
@@ -215,29 +215,28 @@
 
 @media screen and (max-width: 420px) {
     .ghe {
-        width: 15px;
-        height: 15px;
+        width: 14px;
+        height: 14px;
         border-radius: 5px;
         cursor: pointer;
-        margin: 5px;
-        background-color: rgb(123, 122, 122);
+        margin: 3px;
+        background-color: rgb(116, 113, 113);
         color: #fff;
-        // padding: 6.2px 0 6.2px 0;
     }
 
     .gheDaDat {
-        background-color: rgb(232, 76, 76) !important;
+        background-color: #ff4848 !important;
         cursor: no-drop;
         color: #fff !important;
     }
 
     .gheDangDat {
-        background-color: rgb(18, 192, 18) !important;
+        background-color: #44c020 !important;
         color: black;
     }
 
     .gheVip {
-        background-color: rgba(243, 145, 18, 0.452);
+        background-color: #ffb319;
         color: black;
     }
 
@@ -251,8 +250,56 @@
     }
 
     .gheKhachDat {
-        background-color: rgb(25, 112, 242) !important;
+        background-color: rgba(0, 0, 0, 0.267) !important;
         color: #000 !important;
         cursor: no-drop;
+    }
+
+    .type-seats {
+        div > div {
+            margin-right: 10px;
+        }
+
+        p {
+            font-size: 10px;
+        }
+    }
+
+    .total {
+        height: 50px !important;
+    }
+
+    .continue-button {
+        height: 50px !important;
+    }
+
+    .right-title {
+        font-size: 10px;
+    }
+
+    .seatCheckout {
+        .top-content {
+            .left-title {
+                .content-cinema {
+                    text-align: left;
+
+                    .address {
+                        .p-cinema {
+                            font-size: 10px;
+                        }
+
+                        .cinema-name {
+                            font-size: 10px;
+                        }
+                    }
+
+                    .hour {
+                        line-height: 5px;
+                        font-size: 10px;
+                        color: #9b9b9b;
+                    }
+                }
+            }
+        }
     }
 }

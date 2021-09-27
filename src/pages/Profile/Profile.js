@@ -14,7 +14,6 @@ import { GROUPID } from '../../Util/setting';
 
 export default function Profile() {
 
-
     const { thongTinNguoiDung } = useSelector(state => state.QuanLyNguoiDungReducer);
     const { danhSachNguoiDung } = useSelector(state => state.QuanLyNguoiDungReducer);
 
@@ -39,7 +38,7 @@ export default function Profile() {
     useEffect(() => {
         dispatch(layThongTinTaiKhoanAction())
         dispatch(layDanhSachNguoiDungAction());
-    }, [dispatch])
+    }, [])
 
     console.log('danhSachNguoiDung', danhSachNguoiDung)
 
@@ -49,6 +48,13 @@ export default function Profile() {
     const loaiNguoiDung = locNguoiDung[0];
     console.log('Loại Người Dùng', loaiNguoiDung?.maLoaiNguoiDung)
 
+    let maLoaiNguoiDung = loaiNguoiDung?.maLoaiNguoiDung;
+
+    if (maLoaiNguoiDung !== 'QuanTri') {
+        maLoaiNguoiDung = 'KhachHang';
+    }
+
+    console.log(maLoaiNguoiDung);
 
     console.log('thongTinNguoiDung', thongTinNguoiDung);
 
@@ -60,7 +66,7 @@ export default function Profile() {
             email: thongTinNguoiDung.email,
             soDt: thongTinNguoiDung.soDT,
             matKhau: thongTinNguoiDung.matKhau,
-            maLoaiNguoiDung: loaiNguoiDung?.maLoaiNguoiDung,
+            maLoaiNguoiDung: maLoaiNguoiDung,
         },
         validationSchema: Yup.object().shape({
             hoTen: Yup.string().required('Không được bỏ trống!!!').matches('^[A-Z a-z]+$', 'Vui lòng nhập họ tên phù hợp!!!'),
@@ -115,7 +121,7 @@ export default function Profile() {
                         <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">Email: {thongTinNguoiDung.email}</p>
                         <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">Số Điện Thoại: {thongTinNguoiDung.soDT}</p>
                         <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">Tài Khoản: {thongTinNguoiDung.taiKhoan}</p>
-                        <p className="pt-2 text-gray-600 text-xs lg:text-sm flex items-center justify-center lg:justify-start">Nhóm: {thongTinNguoiDung.maNhom}</p>
+                        {/* <p className="pt-2 text-gray-600 text-xs lg:text-sm flex items-center justify-center lg:justify-start">Nhóm: {userLogin.maNhom}</p> */}
                         <div className="pt-12 flex items-center justify-between">
                             <button className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-full" onClick={showModal}>
                                 Cập Nhật Thông Tin

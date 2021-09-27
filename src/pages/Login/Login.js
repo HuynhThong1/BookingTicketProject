@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik';
-import { dangKyAction, dangNhapAction } from '../../redux/actions/QuanLyNguoiDungAction';
+import { capNhatNguoiDungAction, dangKyAction, dangNhapAction, themNguoiDungAction } from '../../redux/actions/QuanLyNguoiDungAction';
 import { useDispatch, useSelector } from 'react-redux';
 import "./Login.scss";
 import * as Yup from 'yup';
+import { GROUPID } from '../../Util/setting';
 
 export default function Login(props) {
 
@@ -11,7 +12,7 @@ export default function Login(props) {
 
     const [slideUp, setSlideUp] = useState(true);
 
-    const [loginFail ,setLoginFail] = useState(false);
+    const [loginFail, setLoginFail] = useState(false);
 
     const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer)
 
@@ -44,22 +45,23 @@ export default function Login(props) {
             matKhau: "",
             email: "",
             soDt: "",
-            maNhom: "GP01",
+            maNhom: GROUPID,
+            maLoaiNguoiDung: 'KhachHang',
             hoTen: ""
         },
+
+        //.matches('^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\ [[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', 'không hợp lệ!!!')
         validationSchema: Yup.object().shape({
-            hoTen: Yup.string().required('Không được bỏ trống!!!').matches('^[A-Za-z]+$', 'Vui lòng nhập họ tên phù hợp!!!'),
+            hoTen: Yup.string().required('Không được bỏ trống!!!').matches('^[A-Z a-z]+$', 'Vui lòng nhập họ tên phù hợp!!!'),
             taiKhoan: Yup.string().required('không được bỏ trống!!!'),
-            email: Yup.string().required('không được bỏ trống!!!').matches('^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\ [[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$', 'không hợp lệ!!!'),
+            email: Yup.string().required('không được bỏ trống!!!').email('không hợp lệ!!!'),
             matKhau: Yup.string().required('không được bỏ trống!!!').min(6, 'phải từ 6-32 ký tự!!!').max(32, 'phải từ 6 - 32 ký tự!!!'),
-            soDt: Yup.string().required('không được bỏ trống!!!').min(10, 'Vui lòng nhập số điện thoại hợp lệ!!!').max(11, 'Vui lòng nhập số điện thoại hợp lệ!!!').matches('^[0-9]+$', 'Vui lòng nhập số điện thoại!!!'),
+            soDt: Yup.string().required('không được bỏ trống!!!').min(10, 'Vui lòng nhập số ĐT hợp lệ!!!').max(11, 'Vui lòng nhập số ĐT hợp lệ!!!').matches('^[0-9]+$', 'Vui lòng nhập số điện thoại!!!'),
         }),
-        onSubmit: values => {
-
+        onSubmit: async values => {
+            values.maNhom = GROUPID;
             const action = dangKyAction(values);
-
-            dispatch(action);
-
+            await dispatch(action);
 
             console.log('values', values);
         },
@@ -111,10 +113,6 @@ export default function Login(props) {
                                 <input type="text" name="soDt" onChange={formikRegister.handleChange} onBlur={formikRegister.handleBlur} />
                                 <label>Số Điện Thoại{formikRegister.errors.soDt && formikRegister.touched.soDt ? (<span style={{ color: 'red' }}><span className="text-black">:</span> {formikRegister.errors.soDt} </span>) : null}</label>
                             </div>
-                            <div className="user-box">
-                                <input type="text" name="maNhom" onChange={formikRegister.handleChange} onBlur={formikRegister.handleBlur} />
-                                <label>Mã Nhóm (GP01)</label>
-                            </div>
                         </div>
                         <button className="submit-btn">Đăng Ký</button>
                     </form>
@@ -136,7 +134,7 @@ export default function Login(props) {
                                 </div>
                             </div>
                             <button className="submit-btn" onClick={() => {
-                                if(errors){
+                                if (errors) {
                                     setLoginFail(true);
                                 }
                             }}>Đăng Nhập</button>

@@ -3,7 +3,7 @@ import { DANG_KY_ACTION, DANG_NHAP_ACTION, DANG_NHAP_THAT_BAI_ACTION, SET_DANH_S
 
 let user = {};
 
-if(localStorage.getItem(USER_LOGIN)){
+if (localStorage.getItem(USER_LOGIN)) {
     user = JSON.parse(localStorage.getItem(USER_LOGIN));
 }
 
@@ -19,43 +19,41 @@ const stateDefault = {
 }
 
 
-export const QuanLyNguoiDungReducer = (state = stateDefault, action ) => {
+export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
 
     switch (action.type) {
 
-        case DANG_NHAP_ACTION : {
-            const {thongTinDangNhap} = action;
+        case DANG_NHAP_ACTION: {
+            const { thongTinDangNhap } = action;
             localStorage.setItem(USER_LOGIN, JSON.stringify(thongTinDangNhap));
             localStorage.setItem(ACCESS_TOKEN, thongTinDangNhap.accessToken);
-            return {...state, userLogin: thongTinDangNhap};
+            return { ...state, userLogin: thongTinDangNhap };
         }
 
-        case DANG_KY_ACTION : {
-            const {thongTinDangKy} = action;
-            localStorage.setItem(USER_LOGIN, JSON.stringify(thongTinDangKy));
-            localStorage.setItem(ACCESS_TOKEN, thongTinDangKy.accessToken);
-            return {...state, userLogin: thongTinDangKy};
-        }
+        // case DANG_KY_ACTION: {
+        //     const { thongTinDangKy } = action;
+        //     return { ...state, userLogin: thongTinDangKy };
+        // }
 
         case DANG_NHAP_THAT_BAI_ACTION: {
-            return {...state, errors: action.payload};
+            return { ...state, errors: action.payload };
         }
 
         case SET_THONG_TIN_NGUOI_DUNG: {
             state.thongTinNguoiDung = action.thongTinNguoiDung;
-            return {...state}
+            return { ...state }
         }
         case SET_THONG_TIN_NGUOI_DUNG_THEO_TAI_KHOAN: {
             state.thongTinNguoiDungTheoTaiKhoan = action.thongTinNguoiDungTheoTaiKhoan;
-            return {...state}
+            return { ...state }
         }
-        case SET_DANH_SACH_NGUOI_DUNG : {
+        case SET_DANH_SACH_NGUOI_DUNG: {
             state.danhSachNguoiDung = action.danhSachNguoiDung;
-            console.log('DanhSachNguoiDung',  state.danhSachNguoiDung )
-            return {...state}
+            console.log('DanhSachNguoiDung', state.danhSachNguoiDung)
+            return { ...state }
         }
 
-    
-        default: return {...state}
+
+        default: return { ...state }
     }
 }

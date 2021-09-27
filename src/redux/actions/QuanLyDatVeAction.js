@@ -44,13 +44,13 @@ export const datVeAction = (thongtinDatVe = new ThongTinDatVe()) => {
             //Đặt vé thành công gọi api load lại phòng vé
             await dispatch(layChiTietPhongVeAction(thongtinDatVe.maLichChieu));
 
-            await dispatch({type: DAT_VE_HOAN_TAT});
+            await dispatch({ type: DAT_VE_HOAN_TAT });
             await dispatch(hideLoadingAction);
 
             let userLogin = getState().QuanLyNguoiDungReducer.userLogin
 
             await connection.invoke('datGheThanhCong', userLogin.taiKhoan, thongtinDatVe.maLichChieu);
-            dispatch({type: CHUYEN_TAB});
+            dispatch({ type: CHUYEN_TAB });
 
         } catch (error) {
             dispatch(hideLoadingAction);
@@ -77,7 +77,7 @@ export const datGheAction = (ghe, maLichChieu) => {
         let taiKhoan = getState().QuanLyNguoiDungReducer.userLogin.taiKhoan;
 
         console.log('danhSachGheDangDat', danhSachGheDangDat)
-        console.log('taiKhoan' , taiKhoan)
+        console.log('taiKhoan', taiKhoan)
         console.log('maLichChieu', maLichChieu)
 
 
@@ -85,5 +85,5 @@ export const datGheAction = (ghe, maLichChieu) => {
         danhSachGheDangDat = JSON.stringify(danhSachGheDangDat);
 
         connection.invoke('datGhe', taiKhoan, danhSachGheDangDat, maLichChieu);
-    } 
+    }
 }

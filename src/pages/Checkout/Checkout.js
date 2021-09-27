@@ -4,6 +4,7 @@ import { datGheAction, datVeAction, layChiTietPhongVeAction } from '../../redux/
 import style from './Checkout.module.scss';
 import './Checkout.scss';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons'
+import { Menu, Dropdown, Button, Space } from 'antd';
 import { CHANGE_TAB_ACTIVE, DAT_GHE } from '../../redux/actions/types/QuanLyDatVeType';
 import _ from 'lodash';
 import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe';
@@ -14,7 +15,7 @@ import { connection } from '../..';
 import { history } from '../../App';
 import styled from 'styled-components'
 import { ACCESS_TOKEN, USER_LOGIN } from '../../Util/setting';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const { TabPane } = Tabs;
 
@@ -93,6 +94,8 @@ function Checkout(props) {
     const { thongTinPhim, danhSachGhe } = chiTietPhongVe;
 
 
+
+
     const renderGhe = () => {
         return danhSachGhe.map((ghe, index) => {
 
@@ -122,8 +125,9 @@ function Checkout(props) {
                     dispatch(datGheAction(ghe, props.match.params.id))
                 }} key={index} style={{ fontSize: 11 }}>
 
-                    {ghe.daDat ? classGheDaDuocDat !== '' ? <CheckOutlined style={{ fontWeight: 'bold' }} /> : <CloseOutlined style={{ fontWeight: 'bold' }} /> : classGheKhachDat !== '' ? ghe.stt : ghe.stt}
+                    {/* {ghe.daDat ? classGheDaDuocDat !== '' ? <CheckOutlined style={{ fontWeight: 'bold' }} /> : <CloseOutlined style={{ fontWeight: 'bold' }} /> : classGheKhachDat !== '' ? ghe.stt : ghe.stt} */}
                     {/* {classGheDangDat !== '' ? ghe.stt : ''} */}
+                    {classGheDangDat !== '' ? ghe.stt : <Fragment><span className="opacity-0">ghe</span></Fragment>}
 
                 </button>
 
@@ -164,9 +168,9 @@ function Checkout(props) {
                                 <tr>
                                     <td><button className="ghe text-center"></button></td>
                                     <td><button className="ghe gheDangDat text-center"></button></td>
-                                    <td><button className="ghe gheDaDat text-center"><CloseOutlined style={{ paddingBottom: 7, fontWeight: 'bold' }} /></button></td>
+                                    <td><button className="ghe gheDaDat text-center"></button></td>
                                     <td><button className="ghe gheVip text-center"></button></td>
-                                    <td><button className="ghe gheDaDuocDat text-center"><CheckOutlined style={{ paddingBottom: 7, fontWeight: 'bold' }} /></button></td>
+                                    <td><button className="ghe gheDaDuocDat text-center"></button></td>
                                     <td><button className="ghe gheKhachDat text-center"></button></td>
                                 </tr>
                             </tbody>
@@ -262,17 +266,33 @@ export default function CheckoutTab(props) {
         }
     }, [])
 
+    //menu for dropdown antd
+    const menu = (
+        <Menu>
+            <Menu.Item>
+                <Link to="/profile">Thông Tin Cá Nhân</Link>
+            </Menu.Item>
+            <Menu.Item>
+                <div onClick={() => {
+                    localStorage.removeItem(USER_LOGIN);
+                    localStorage.removeItem(ACCESS_TOKEN);
+                    history.push('/');
+                    window.location.reload();
+                }}>
+                    Đăng Xuất
+                </div>
+            </Menu.Item>
+        </Menu>
+    );
+
     const operations = <Fragment>
         {!_.isEmpty(userLogin) ? <Fragment>
-            <button onClick={() => {
-                history.push(`/profile`);
-            }}><UserProfile className="ml-5 rounded-full bg-red-200">{userLogin.taiKhoan.substr(0, 1)}</UserProfile>  Hello {userLogin.taiKhoan}</button>
-            <button onClick={() => {
-                localStorage.removeItem(USER_LOGIN);
-                localStorage.removeItem(ACCESS_TOKEN);
-                history.push('/');
-                window.location.reload();
-            }} className="text-blue-800">Đăng xuất</button>
+            {userLogin.taiKhoan}
+            <Dropdown overlay={menu} placement="bottomCenter" className="text-center" arrow>
+                <button className="pr-7" onClick={() => {
+                    history.push(`/profile`);
+                }}><UserProfile className="ml-5 rounded-full bg-blue-100">{userLogin.taiKhoan.substr(0, 1)}</UserProfile></button>
+            </Dropdown>
         </Fragment> : ''}
     </Fragment>;
 

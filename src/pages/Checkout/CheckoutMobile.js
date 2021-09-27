@@ -128,10 +128,10 @@ export default function CheckoutMobile(props) {
             return <Fragment key={index}>
                 <button type="button" className={`ghe ${classGheVip}  ${classGheDaDat} ${classGheDangDat} ${classGheDaDuocDat} ${classGheKhachDat} text-center`} disabled={ghe.daDat || classGheKhachDat !== ''} onClick={() => {
                     dispatch(datGheAction(ghe, props.match.params.id))
-                }} key={index} style={{ fontSize: 7.5 }}>
+                }} key={index} style={{ fontSize: 6.5 }}>
 
-                    {ghe.daDat ? classGheDaDuocDat !== '' ? <CheckOutlined style={{ fontWeight: 'bold' }} /> : <CloseOutlined style={{ fontWeight: 'bold' }} /> : classGheKhachDat !== '' ? ghe.stt : ghe.stt}
-                    {/* {classGheDangDat !== '' ? ghe.stt : ''} */}
+                    {/* {ghe.daDat ? classGheDaDuocDat !== '' ? <CheckOutlined style={{ fontWeight: 'bold' }} /> : <CloseOutlined style={{ fontWeight: 'bold' }} /> : classGheKhachDat !== '' ? ghe.stt : ghe.stt} */}
+                    {classGheDangDat !== '' ? ghe.stt : <Fragment><span className="opacity-0">ghe</span></Fragment>}
 
                 </button>
 
@@ -153,13 +153,13 @@ export default function CheckoutMobile(props) {
             const danhSachGhe = _.first(ticket.danhSachGhe);
             return <div className="p-2 w-full" key={index}>
                 <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                    <img alt="team" className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src={ticket.hinhAnh} />
+                    {/* <img alt="team" className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src={ticket.hinhAnh} /> */}
                     <div className="flex-grow">
-                        <h2 className="text-gray-900 title-font font-medium">{ticket.tenPhim}</h2>
-                        <p className="text-gray-500">{moment(ticket.ngayDat).format('hh:mm A')} - Ngày Chiếu {moment(ticket.ngayDat).format('DD-MM-YYYY')} </p>
-                        <p className="text-gray-500">Thời Lượng: {ticket.thoiLuongPhim} phút</p>
-                        <p className="text-gray-500">Địa điểm: {danhSachGhe.tenHeThongRap}</p>
-                        <p className="text-gray-500">Tên Rạp: {danhSachGhe.tenCumRap} - Ghế {ticket.danhSachGhe.map((ghe, index) => {
+                        <h2 className="text-gray-900 title-font font-medium" style={{ fontSize: '14px' }}>{ticket.tenPhim}</h2>
+                        <p className="text-gray-500" style={{ fontSize: '12px' }}>{moment(ticket.ngayDat).format('hh:mm A')} - Ngày Chiếu {moment(ticket.ngayDat).format('DD-MM-YYYY')} </p>
+                        <p className="text-gray-500" style={{ fontSize: '12px' }}>Thời Lượng: {ticket.thoiLuongPhim} phút</p>
+                        <p className="text-gray-500" style={{ fontSize: '12px' }}>Địa điểm: {danhSachGhe.tenHeThongRap}</p>
+                        <p className="text-gray-500" style={{ fontSize: '12px' }}>Tên Rạp: {danhSachGhe.tenCumRap} - Ghế {ticket.danhSachGhe.map((ghe, index) => {
                             return <span key={index}> {ghe.tenGhe} </span>
                         })}</p>
                     </div>
@@ -185,7 +185,7 @@ export default function CheckoutMobile(props) {
                 </div>
                 <div className="right">
                     <div className="account">
-                        <UserProfile className="ml-5 rounded-full bg-red-200" onClick={() => {
+                        <UserProfile className="ml-5 rounded-full bg-blue-100" onClick={() => {
                             history.push('/profile')
                         }}>{userLogin.taiKhoan.substr(0, 1)}</UserProfile>
                     </div>
@@ -216,7 +216,7 @@ export default function CheckoutMobile(props) {
                         </div>
                         <div className="right-title">
                             <p>Tài Khoản: {userLogin.taiKhoan.length > 15 ? userLogin.taiKhoan.slice(0, 15) + '...' : userLogin.taiKhoan}</p>
-                            <p>Số ĐT: {userLogin.soDT}</p>
+                            <p>Số ĐT: {thongTinNguoiDung.soDT}</p>
                         </div>
                     </div>
                     <div className="seat-map">
@@ -229,41 +229,37 @@ export default function CheckoutMobile(props) {
                                 {renderGhe()}
                             </div>
 
-                            <div className="mt-10 flex justify-center px-10">
-                                <table className="divide-y divide-gray-200 w-full text-center" >
-                                    <thead className="bg-gray-50 p-5">
-                                        <tr>
-                                            <th>Ghế chưa đặt</th>
-                                            <th>Ghế đang đặt</th>
-                                            <th>Ghế đã được đặt</th>
-                                            <th>Ghế vip</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
-                                        <tr>
-                                            <td><button className="ghe text-center"></button></td>
-                                            <td><button className="ghe gheDangDat text-center"></button></td>
-                                            <td><button className="ghe gheDaDat text-center"><CloseOutlined style={{ paddingBottom: 7, fontWeight: 'bold' }} /></button></td>
-                                            <td><button className="ghe gheVip text-center"></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="mt-10 flex justify-center px-10">
-                                <table className="divide-y divide-gray-200 w-full text-center" >
-                                    <thead className="bg-gray-50 p-5">
-                                        <tr>
-                                            <th className="text-xs">Ghế bạn đã đặt</th>
-                                            <th>Ghế người khác đang đặt</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
-                                        <tr>
-                                            <td><button className="ghe gheDaDuocDat text-center"><CheckOutlined style={{ paddingBottom: 0, fontWeight: 'bold' }} /></button></td>
-                                            <td><button className="ghe gheKhachDat text-center"></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div className="type-seats mt-10 flex flex-col justify-center px-10 text-center">
+
+                                <div className="flex flex-row justify-center">
+                                    <div>
+                                        <p>Ghế Chưa Đặt</p>
+                                        <span><button className="ghe text-center"></button></span>
+                                    </div>
+                                    <div>
+                                        <p>Ghế đang đặt</p>
+                                        <span><button className="ghe gheDangDat text-center"></button></span>
+                                    </div>
+                                    <div>
+                                        <p>Ghế đã được đặt</p>
+                                        <span><button className="ghe gheDaDat text-center"></button></span>
+                                    </div>
+                                    <div>
+                                        <p>Ghế vip</p>
+                                        <span><button className="ghe gheVip text-center"></button></span>
+                                    </div>
+                                </div>
+
+                                <div className="mt-5 ml-7 flex flex-row justify-center">
+                                    <div>
+                                        <p>Ghế bạn đã đặt</p>
+                                        <span><button className="ghe gheDaDuocDat text-center"></button></span>
+                                    </div>
+                                    <div>
+                                        <p>Ghế người khác đang đặt</p>
+                                        <span><button className="ghe gheKhachDat text-center"></button></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

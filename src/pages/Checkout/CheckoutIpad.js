@@ -130,8 +130,10 @@ export default function CheckoutIpad(props) {
                     dispatch(datGheAction(ghe, props.match.params.id))
                 }} key={index} style={{ fontSize: 11 }}>
 
-                    {ghe.daDat ? classGheDaDuocDat !== '' ? <CheckOutlined style={{ fontWeight: 'bold' }} /> : <CloseOutlined style={{ fontWeight: 'bold' }} /> : classGheKhachDat !== '' ? ghe.stt : ghe.stt}
+                    {/* {ghe.daDat ? classGheDaDuocDat !== '' ? <CheckOutlined style={{ fontWeight: 'bold' }} /> : <CloseOutlined style={{ fontWeight: 'bold' }} /> : classGheKhachDat !== '' ? ghe.stt : ghe.stt} */}
                     {/* {classGheDangDat !== '' ? ghe.stt : ''} */}
+
+                    {classGheDangDat !== '' ? ghe.stt : <Fragment><span className="opacity-0">ghe</span></Fragment>}
 
                 </button>
 
@@ -185,7 +187,7 @@ export default function CheckoutIpad(props) {
                 </div>
                 <div className="right">
                     <div className="account">
-                        <UserProfile className="ml-5 rounded-full bg-red-200" onClick={() => {
+                        <UserProfile className="ml-5 rounded-full bg-blue-100" onClick={() => {
                             history.push('/profile')
                         }}>{userLogin.taiKhoan.substr(0, 1)}</UserProfile>
                     </div>
@@ -245,9 +247,9 @@ export default function CheckoutIpad(props) {
                                         <tr>
                                             <td><button className="ghe text-center"></button></td>
                                             <td><button className="ghe gheDangDat text-center"></button></td>
-                                            <td><button className="ghe gheDaDat text-center"><CloseOutlined style={{ paddingBottom: 7, fontWeight: 'bold' }} /></button></td>
+                                            <td><button className="ghe gheDaDat text-center"></button></td>
                                             <td><button className="ghe gheVip text-center"></button></td>
-                                            <td><button className="ghe gheDaDuocDat text-center"><CheckOutlined style={{ paddingBottom: 7, fontWeight: 'bold' }} /></button></td>
+                                            <td><button className="ghe gheDaDuocDat text-center"></button></td>
                                             <td><button className="ghe gheKhachDat text-center"></button></td>
                                         </tr>
                                     </tbody>
