@@ -26,8 +26,16 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
         case DANG_NHAP_ACTION: {
             const { thongTinDangNhap } = action;
             localStorage.setItem(USER_LOGIN, JSON.stringify(thongTinDangNhap));
-            localStorage.setItem(ACCESS_TOKEN, thongTinDangNhap.accessToken);
+            if( thongTinDangNhap.accessToken  ) {
+                localStorage.setItem(ACCESS_TOKEN, thongTinDangNhap.accessToken);
+            }
             return { ...state, userLogin: thongTinDangNhap };
+        }
+
+        case 'GET_TOKEN_ACTION': {
+            const { token } = action;
+            localStorage.setItem(ACCESS_TOKEN, token.accessToken);
+            return { ...state};
         }
 
         // case DANG_KY_ACTION: {

@@ -45,9 +45,17 @@ export const dangNhapAction = (thongTinDangNhap) => {
 export const dangKyAction = (thongTinDangKy) => {
     return async (dispatch) => {
         try {
+            const dangNhap = { taiKhoan: thongTinDangKy.taiKhoan, matKhau: thongTinDangKy.matKhau}
             const results = await quanLyNguoiDungService.dangKy(thongTinDangKy);
+            const results1 = await quanLyNguoiDungService.dangNhap(dangNhap);
 
-            if (results.status === 200) {
+
+            if (results.status === 200 && results1.status === 200) {
+                await dispatch({
+                    type: 'GET_TOKEN_ACTION',
+                    token: results1.data.content
+                })
+                await quanLyNguoiDungService.capNhatNguoiDung(thongTinDangKy);
                 Swal.fire({
                     title: 'Đăng ký thành công!',
                     text: 'Vui Lòng Đăng Nhập Để Vào Hệ Thống.',
@@ -71,7 +79,7 @@ export const dangKyAction = (thongTinDangKy) => {
             console.log('errors', errors.response?.data);
             Swal.fire({
                 title: 'Đăng ký thất bại!',
-                text: `${errors.response?.data.content}`,
+                text: `Vui lòng thử lại!!`,
                 icon: 'error',
             })
         }
