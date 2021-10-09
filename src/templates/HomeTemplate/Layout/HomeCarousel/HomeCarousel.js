@@ -31,10 +31,10 @@ export default function HomeCarousel(props) {
     return arrImg.map((item, index) => {
       return (
         <div key={index}>
-          <div
+          <div className="image-banner"
             style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}
           >
-            <img className="opacity-0" src={item.hinhAnh} alt="1" />
+            <img className="opacity-0 " src={item.hinhAnh} alt="1" />
           </div>
         </div>
       );
@@ -42,7 +42,7 @@ export default function HomeCarousel(props) {
   };
 
 
-  return <Carousel style={{ width: '100%', padding: 0, margin: 0 }}>
+  return <Carousel style={{ width: '100%', padding: 0, margin: 0 }} >
     {renderImg()}
   </Carousel>;
 }

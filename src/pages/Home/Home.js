@@ -30,7 +30,7 @@ export default function Home(props) {
 
       <div className="container mx-auto">
         <section id="phim" className="text-gray-600 body-font">
-          <div className="container px-5 py-24 mx-auto">
+          <div className="container px-5 py-10 md:py-14 lg:py-24 mx-auto">
             <MultipleRowSlick arrFilm={arrFilm} />
 
           </div>

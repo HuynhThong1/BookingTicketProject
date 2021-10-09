@@ -1,13 +1,24 @@
-.slick-dots-bottom{
+.slick-dots-bottom {
     margin: 0 !important;
     padding: 0 !important;
 }
 
-
-.slick-dots li.slick-active button:before{
+.slick-dots li.slick-active button:before {
     display: none;
 }
 
-.slick-dots li button:before{
+.slick-dots li button:before {
     display: none !important;
+}
+
+@media screen and (max-width: 769px) {
+    .image-banner {
+        height: 350px !important;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .image-banner {
+        height: 200px !important;
+    }
 }
