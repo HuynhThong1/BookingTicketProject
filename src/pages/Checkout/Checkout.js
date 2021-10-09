@@ -136,6 +136,13 @@ function Checkout(props) {
         })
     }
 
+
+    let classBtnDatVe = '';
+
+    if (danhSachGheDangDat.length === 0) {
+        classBtnDatVe = 'disabled';
+    }
+
     return (
         <div className="min-h-screen">
             <div className="grid grid-cols-12">
@@ -235,9 +242,9 @@ function Checkout(props) {
                     </div>
 
                     <hr />
-
+                    {/* py-4 bg-green-400 w-full text-center text-2xl text-white cursor-pointer rounded-sm */}
                     <div className="mb-0 absolute left-0 right-0 bottom-0">
-                        <div className="py-4 bg-green-400 w-full text-center text-2xl text-white cursor-pointer rounded-sm" onClick={() => {
+                        <div className={`${classBtnDatVe} checkout-button flex items-center justify-center`} onClick={() => {
                             const thongTinDatVe = new ThongTinDatVe();
                             thongTinDatVe.maLichChieu = props.match.params.id;
                             thongTinDatVe.danhSachVe = danhSachGheDangDat;

@@ -1,0 +1,35 @@
+.detailMainTop {
+    position: relative;
+
+    .styleGradient {
+        background: linear-gradient(to top, rgb(10, 32, 41), transparent 100%);
+    }
+
+    .detailMainInfo {
+        position: absolute;
+        top: 50%;
+        width: 95%;
+        left: 50%;
+
+        .filmPoster {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            max-width: 220px;
+
+            .posterMain {
+                border-radius: 4px;
+                padding-top: 147.90697674%;
+                background-position: center, 0 0;
+                background-size: 100% auto;
+                background-repeat: no-repeat, repeat-y;
+            }
+
+            .infoMain {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 25%;
+            }
+        }
+    }
+}

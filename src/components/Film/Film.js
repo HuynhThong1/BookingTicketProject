@@ -11,7 +11,7 @@ export default function Film(props) {
     <div className="movie-card">
       <div className="movie-header film-image" style={{ background: `url(${film.hinhAnh}), url('https://ss-images.saostar.vn/wp700/2019/09/09/6006388/ednccmou8aeqxdk.jpg')` }}>
         <div className="header-icon-container">
-          <a href={film.trailer}>
+          <a href={film.trailer} target="_blank">
             <i className="fas fa-play header-icon"></i>
           </a>
         </div>

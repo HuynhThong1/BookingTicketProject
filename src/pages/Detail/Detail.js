@@ -12,7 +12,6 @@ import { USER_LOGIN } from "../../Util/setting";
 import Swal from 'sweetalert2'
 import { history } from '../../App';
 import { NavLink } from 'react-router-dom';
-import './Detail.scss';
 
 
 const { TabPane } = Tabs;
@@ -62,7 +61,7 @@ export default function Detail(props) {
                 borderRadius={0} // default border radius value is 10px
             >
                 <div className="grid grid-cols-12">
-                    <div className="col-span-5 col-start-3">
+                    <div className="col-span-5 col-start-3">s
                         <div className="grid grid-cols-3">
                             <img src={filmDetail.hinhAnh} alt={filmDetail.tenPhim} className="col-span-1" />
 
@@ -94,57 +93,48 @@ export default function Detail(props) {
                     </div>
                 </div>
 
+
+
                 <div className="mt-10 w-2/3 bg-white p-5 container" style={{ marginLeft: 245 }}>
-                    <Tabs defaultActiveKey="1" centered>
-                        <TabPane tab="Lịch Chiếu" key="1" style={{ minHeight: 500 }}>
-                            <div>
-                                <Tabs tabPosition={'left'}>
+                    <div>
+                        <Tabs tabPosition={'left'}>
+                            {filmDetail.heThongRapChieu?.map((heThongRap, index) => {
+                                return <TabPane tab={<div className="flex items-center">
+                                    <img src={heThongRap.logo} width={50} className="rounded-full" alt={heThongRap.tenHeThongRap} />
+                                    <h3 className="ml-5">{heThongRap.tenHeThongRap}</h3>
+                                </div>}
+                                    key={index}>
+                                    <div className="tab-scroll-bar">
+                                        {heThongRap.cumRapChieu?.map((cumRap, index) => {
+                                            return <div className="mt-10" key={index}>
+                                                <div className="flex">
+                                                    <img className="rounded-md" src={cumRap.hinhAnh} alt={cumRap.tenCumRap} style={{ width: 50, height: 50 }} />
 
-                                    {filmDetail.heThongRapChieu?.map((heThongRap, index) => {
-                                        return <TabPane tab={<div className="flex items-center">
-                                            <img src={heThongRap.logo} width={50} className="rounded-full" alt={heThongRap.tenHeThongRap} />
-                                            <h3 className="ml-5">{heThongRap.tenHeThongRap}</h3>
-                                        </div>}
-                                            key={index}>
-                                            <div className="tab-scroll-bar">
-                                                {heThongRap.cumRapChieu?.map((cumRap, index) => {
-                                                    return <div className="mt-10" key={index}>
-                                                        <div className="flex">
-                                                            <img className="rounded-md" src={cumRap.hinhAnh} alt={cumRap.tenCumRap} style={{ width: 50, height: 50 }} />
-
-                                                            <div className="ml-2">
-                                                                <p className="text-xl mb-2">{cumRap.tenCumRap}</p>
-                                                                <p className="text-xs opacity-80">{cumRap.diaChi}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="thong-tin-lich-chieu grid grid-cols-6">
-                                                            {cumRap.lichChieuPhim?.slice(0, 12).map((lichChieu, index) => {
-                                                                if (localStorage.getItem(USER_LOGIN)) {
-                                                                    return <NavLink className="col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
-                                                                        {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
-                                                                    </NavLink>
-                                                                } else {
-                                                                    return <span onClick={clickMovie} className="cursor-pointer col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" key={index}>
-                                                                        {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
-                                                                    </span>
-                                                                }
-                                                            })}
-                                                        </div>
+                                                    <div className="ml-2">
+                                                        <p className="text-xl mb-2">{cumRap.tenCumRap}</p>
+                                                        <p className="text-xs opacity-80">{cumRap.diaChi}</p>
                                                     </div>
-                                                })}
+                                                </div>
+                                                <div className="thong-tin-lich-chieu grid grid-cols-6">
+                                                    {cumRap.lichChieuPhim?.slice(0, 12).map((lichChieu, index) => {
+                                                        if (localStorage.getItem(USER_LOGIN)) {
+                                                            return <NavLink className="col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
+                                                                {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
+                                                            </NavLink>
+                                                        } else {
+                                                            return <span onClick={clickMovie} className="cursor-pointer col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" key={index}>
+                                                                {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
+                                                            </span>
+                                                        }
+                                                    })}
+                                                </div>
                                             </div>
-                                        </TabPane>
-                                    })}
-                                </Tabs>
-                            </div>
-                        </TabPane>
-                        <TabPane tab="Thông tin" key="2" style={{ minHeight: 500 }}>
-                            Thong Tin
-                        </TabPane>
-                        <TabPane tab="Đánh giá" key="3" style={{ minHeight: 500 }}>
-                            Đánh giá
-                        </TabPane>
-                    </Tabs>
+                                        })}
+                                    </div>
+                                </TabPane>
+                            })}
+                        </Tabs>
+                    </div>
                 </div>
             </CustomCard>
 

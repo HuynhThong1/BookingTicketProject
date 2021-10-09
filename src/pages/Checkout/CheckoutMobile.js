@@ -216,7 +216,7 @@ export default function CheckoutMobile(props) {
                         </div>
                         <div className="right-title">
                             <p>Tài Khoản: {userLogin.taiKhoan.length > 15 ? userLogin.taiKhoan.slice(0, 15) + '...' : userLogin.taiKhoan}</p>
-                            <p>Số ĐT: {thongTinNguoiDung.soDT}</p>
+                            <p>Số ĐT: {userLogin.soDT}</p>
                         </div>
                     </div>
                     <div className="seat-map">
