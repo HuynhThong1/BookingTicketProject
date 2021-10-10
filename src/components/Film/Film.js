@@ -1,19 +1,49 @@
 import moment from "moment";
-import React from "react";
+import React,  { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-
+import { Modal, Button } from 'antd';
 export default function Film(props) {
   const { film } = props;
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal= () => {
+    setIsModalVisible(true)
+  }
+  const handleOk = () => {
+    setIsModalVisible(false);
+};
 
+const handleCancel = () => {
+    setIsModalVisible(false);
+};
+const getWindowDimensions = () => {
+  const { innerWidth: width, innerHeight: height } = window
+  return { width, height }
+}
+
+const useWindowDimensions = () => {
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
+
+  useEffect(() => {
+     const handleResize = () => setWindowDimensions(getWindowDimensions())
+
+     window.addEventListener('resize', handleResize)
+
+     return () => window.removeEventListener('resize', handleResize)
+
+   }, [])
+
+   return windowDimensions
+}
+const { width } = useWindowDimensions();
 
   return (
     <div className="movie-card">
       <div className="movie-header film-image" style={{ background: `url(${film.hinhAnh}), url('https://ss-images.saostar.vn/wp700/2019/09/09/6006388/ednccmou8aeqxdk.jpg')` }}>
         <div className="header-icon-container">
-          <a href={film.trailer} target="_blank">
+          <div onClick={()=>showModal()}>
             <i className="fas fa-play header-icon"></i>
-          </a>
+          </div>
         </div>
       </div>
       {/*movie-header*/}
@@ -37,7 +67,10 @@ export default function Film(props) {
           {/*seat*/}
         </div>
       </div>
-
+      <Modal visible={isModalVisible}    centered
+          style={{ width: (width / 100) }} footer onOk={handleOk} onCancel={handleCancel}>
+                <iframe style={{ width: '100%'}} height="400px" src={film.trailer}></iframe>
+      </Modal>
 
     </div>
   );

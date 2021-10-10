@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CustomCard } from '@tsamantanis/react-glassmorphism'
@@ -12,12 +12,44 @@ import { USER_LOGIN } from "../../Util/setting";
 import Swal from 'sweetalert2'
 import { history } from '../../App';
 import { NavLink } from 'react-router-dom';
+import { Modal } from 'antd';
 
 
 const { TabPane } = Tabs;
 
 export default function Detail(props) {
-
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const showModal= () => {
+      setIsModalVisible(true)
+    }
+    const handleOk = () => {
+      setIsModalVisible(false);
+  };
+  
+  const handleCancel = () => {
+      setIsModalVisible(false);
+  };
+  const getWindowDimensions = () => {
+    const { innerWidth: width, innerHeight: height } = window
+    return { width, height }
+  }
+  
+  const useWindowDimensions = () => {
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
+  
+    useEffect(() => {
+       const handleResize = () => setWindowDimensions(getWindowDimensions())
+  
+       window.addEventListener('resize', handleResize)
+  
+       return () => window.removeEventListener('resize', handleResize)
+  
+     }, [])
+  
+     return windowDimensions
+  }
+  const { width } = useWindowDimensions();
+  
 
     const filmDetail = useSelector(state => state.QuanLyRapReducer.filmDetail);
 
@@ -61,10 +93,12 @@ export default function Detail(props) {
                 borderRadius={0} // default border radius value is 10px
             >
                 <div className="grid grid-cols-12">
-                    <div className="col-span-5 col-start-3">s
+                    <div className="col-span-5 col-start-3">
                         <div className="grid grid-cols-3">
+                            <div onClick={()=>showModal()}>
                             <img src={filmDetail.hinhAnh} alt={filmDetail.tenPhim} className="col-span-1" />
-
+                            </div>
+                        
                             <div className="col-span-2 flex flex-col justify-center ml-10">
                                 <p className="text-white">Ngày Chiếu: {moment(filmDetail.ngayKhoiChieu).format('dd-mm-yyyy')}</p>
                                 <p className="text-4xl text-white">{filmDetail.tenPhim}</p>
@@ -115,14 +149,14 @@ export default function Detail(props) {
                                                         <p className="text-xs opacity-80">{cumRap.diaChi}</p>
                                                     </div>
                                                 </div>
-                                                <div className="thong-tin-lich-chieu grid grid-cols-6">
+                                                <div className="flex flex-wrap">
                                                     {cumRap.lichChieuPhim?.slice(0, 12).map((lichChieu, index) => {
                                                         if (localStorage.getItem(USER_LOGIN)) {
-                                                            return <NavLink className="col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
+                                                            return <NavLink className="col-span-1 mt-5 mr-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
                                                                 {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
                                                             </NavLink>
                                                         } else {
-                                                            return <span onClick={clickMovie} className="cursor-pointer col-span-1 mt-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" key={index}>
+                                                            return <span onClick={clickMovie} className="cursor-pointer col-span-1 mt-5 mr-5 w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" key={index}>
                                                                 {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
                                                             </span>
                                                         }
@@ -138,7 +172,10 @@ export default function Detail(props) {
                 </div>
             </CustomCard>
 
-
+            <Modal visible={isModalVisible}    centered
+          style={{ width: (width / 100) }} footer onOk={handleOk} onCancel={handleCancel}>
+                <iframe style={{ width: '100%'}} height="400px" src={filmDetail.trailer}></iframe>
+      </Modal>
 
 
         </div>

@@ -1,11 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { NavLink } from 'react-router-dom';
-import { Tabs, Row, Col } from "antd";
+import { Tabs, Row, Col, Menu } from "antd";
 import moment from "moment";
 import { USER_LOGIN } from "../../../Util/setting";
 import Swal from 'sweetalert2'
 import { history } from '../../../App';
+import { Collapse, Select } from 'antd';
+
 const { TabPane } = Tabs;
+const { Panel } = Collapse;
 
 export default function HomeMenu(props) {
   const { heThongRapChieu } = props;
@@ -61,7 +64,7 @@ export default function HomeMenu(props) {
                           <p className="text-xs">120 phút - 8.0 IMDb - 2D/Digital</p>
                         </div>
                       </div>
-                      <div className="grid grid-cols-6 gap-4 mt-5">
+                      <div className="flex flex-wrap gap-4 mt-5 ">
                         {phim.lstLichChieuTheoPhim?.slice(0, 10).map((lichChieu, index) => {
                           if (localStorage.getItem(USER_LOGIN)) {
                             return <NavLink className="w-20 px-2 py-3 bg-white text-center hover:bg-gray-100 text-gray-800 font-semibold border border-gray-400 rounded shadow hover:text-black" to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
@@ -87,13 +90,91 @@ export default function HomeMenu(props) {
       );
     });
   };
+  const createRandomNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+  const renderHeThongRapMobile = () => {
+    return heThongRapChieu?.map((heThongRap, index) => {
+      return <Collapse  expandIconPosition="right" key={index}>
+       <Panel header={<div className="titleCinemaMobile">
+                        <img className="logoCinemasMobile" src={heThongRap.logo} />
+                        <div className="nameCinemasMobile">{heThongRap.maHeThongRap}</div>
+                    </div>} key={index} >
+                    <Collapse
+                            expandIconPosition="right"
+                            className="cinemaChildMobile"
+                        >  
+                        {
+                          heThongRap?.lstCumRap.map((lcd,indexs)=>{
+                            return  <Panel header={<div className="titleCinemasChildMobile">
+                            <img className="logoCinemasChildMobile" src={heThongRap.logo} />
+                            <div className="infoCinemasChildMobile">
+                                <div className="nameCinemasChildMobile">{lcd.tenCumRap}</div>
+                                <div className="addCinemasChildMobile">{lcd.diaChi}</div>
+                            </div>
+                            </div>} key={indexs}>
+                                <Collapse
+                                        expandIconPosition="right"
+                                        className="filmMobile"
+                                    >
+                                         {lcd.danhSachPhim.map((dsp, indexsss) => {
+                                            return <Panel showArrow={false} header={<div className="infoFilmCinemaMobile">
+                                                <img className="imgFilmMobile" src={dsp.hinhAnh} />
+                                                <div className="infoFilmMobileDetail">
+                                                    <span className="typeAgeMobile">C{createRandomNumber(18, 12)}</span>
+                                                    <span className="nameFilmCinemaMobile">
+                                                        {dsp.tenPhim}
+                                                    </span>
+                                                    <div className="timeReviewFilmMobile">
+                                                        {createRandomNumber(120, 90)} phút - {createRandomNumber(9.7, 3.4).toFixed(1)} IMDb
+                                                    </div>
+                                                </div>
+                                            </div>} key={indexsss}>
+                                                <div className="ml-2" style={{ fontWeight: '600', paddingBottom: 15 }}>{createRandomNumber(3, 2)}D Digital</div>
+
+                                                <div key={indexsss + 300} className="flex flex-wrap">
+                                                    {dsp.lstLichChieuTheoPhim.map((ds, indexssss) => {
+                                                        if (indexssss <= 6) {
+                                                          if (localStorage.getItem(USER_LOGIN)) {
+                                                            return <NavLink className="movieTime" to={`/checkout/${ds.maLichChieu}`} key={index}>
+                                                              {moment(ds.ngayChieuGioChieu).format('hh:mm A')}
+                                                            </NavLink>
+                                                          } else {
+                                                            return <a onClick={clickMovie} className="movieTime" key={index}>
+                                                              {moment(ds.ngayChieuGioChieu).format('hh:mm A')}
+                                                            </a>
+                                                          }
+                                                        }
+                                                    })}
+                                                </div>
+                                            </Panel>
+                                        })}
+                                </Collapse>
+                        </Panel>
+                          })
+                        }
+                    </Collapse>
+        </Panel>
+    </Collapse>
+    })
+  }
+      
+  
+  
+
 
   return (
     <>
-      <div className="">
-        <Row className="">
+      <div className="movie__listCinemas">
+        <Row className="hideOnMobile">
           <Col span={24}>
             <Tabs tabPosition={tabPosition}>{renderHeThongRap()};</Tabs>
+          </Col>
+        </Row>
+        <Row className="listCinemasMobile hideOnPC">
+          <Col span={24}>
+            <div>{renderHeThongRapMobile()}</div>
           </Col>
         </Row>
       </div>
