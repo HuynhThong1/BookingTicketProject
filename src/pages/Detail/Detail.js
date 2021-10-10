@@ -25,10 +25,12 @@ export default function Detail(props) {
     const handleOk = () => {
       setIsModalVisible(false);
   };
-  
+
   const handleCancel = () => {
       setIsModalVisible(false);
   };
+  
+
   const getWindowDimensions = () => {
     const { innerWidth: width, innerHeight: height } = window
     return { width, height }
@@ -81,8 +83,18 @@ export default function Detail(props) {
 
 
     }, [])
-
-
+    const getId = (url) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url?.match(regExp);
+      
+        return (match && match[2].length === 11)
+          ? match[2]
+          : null;
+      }
+    const convertLink = (url) => {
+        return `https://www.youtube.com/embed/${getId(url)}`
+      }
+    
     return (
         <div style={{ backgroundImage: `url(${filmDetail.hinhAnh})`, backgroundRepeat: 'no-repeat', backgroundSize: '100%', backgroundPosition: 'center', minHeight: '100vh' }}>
             <CustomCard
@@ -174,8 +186,8 @@ export default function Detail(props) {
 
             <Modal visible={isModalVisible}    centered
           style={{ width: (width / 100) }} footer onOk={handleOk} onCancel={handleCancel}>
-                <iframe style={{ width: '100%'}} height="400px" src={filmDetail.trailer}></iframe>
-      </Modal>
+                <iframe style={{ width: '100%'}} height="400px" src={convertLink(filmDetail?.trailer)}></iframe>
+            </Modal>
 
 
         </div>

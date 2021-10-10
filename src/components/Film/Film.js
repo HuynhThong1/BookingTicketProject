@@ -36,7 +36,17 @@ const useWindowDimensions = () => {
    return windowDimensions
 }
 const { width } = useWindowDimensions();
+const convertLink = (url) => {
+  return `https://www.youtube.com/embed/${getId(url)}`
+}
+const getId = (url) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
 
+  return (match && match[2].length === 11)
+    ? match[2]
+    : null;
+}
   return (
     <div className="movie-card">
       <div className="movie-header film-image" style={{ background: `url(${film.hinhAnh}), url('https://ss-images.saostar.vn/wp700/2019/09/09/6006388/ednccmou8aeqxdk.jpg')` }}>
@@ -67,9 +77,10 @@ const { width } = useWindowDimensions();
           {/*seat*/}
         </div>
       </div>
+      {console.log('1111',film.trailer)}
       <Modal visible={isModalVisible}    centered
           style={{ width: (width / 100) }} footer onOk={handleOk} onCancel={handleCancel}>
-                <iframe style={{ width: '100%'}} height="400px" src={film.trailer}></iframe>
+                <iframe style={{ width: '100%'}} height="400px" src={convertLink(film.trailer)}></iframe>
       </Modal>
 
     </div>
