@@ -10,19 +10,17 @@ export const HomeTemplate = (props) => { //path, exact, Component
 
     const { Component, ...restProps } = props;
 
-    useEffect(()=>{
+    useEffect(() => {
         window.scrollTo(0, 0);
     })
- 
+
     return <Route {...restProps} render={(propsRoute) => { //props.location, props.history, props.match
         return <Fragment>
             <Header {...propsRoute} />
 
-            <div style={{paddingTop: 70}}>
+            <div style={{ paddingTop: 77 }}>
                 <Component {...propsRoute} />
             </div>
-
-            <hr className="mt-10" />
             <Footer {...propsRoute} />
 
         </Fragment>

@@ -4,7 +4,8 @@ import styleSlick from "./MultipleRowSlick.module.scss";
 import Film from "../Film/Film";
 import { SET_PHIM_DANG_CHIEU, SET_PHIM_SAP_CHIEU } from "../../redux/actions/types/QuanLyPhimType";
 import { useDispatch } from "react-redux";
-import { Modal, Button } from 'antd';
+import './MultipleRowSlick.scss';
+
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -119,7 +120,7 @@ const MultipleRowSlick = (props) => {
         <button
           type="button"
           style={{ marginRight: 30 }}
-          className={phimDangChieu ? `bg-gray-800 text-white px-4 py-3 font-semibold border border-gray-800 rounded dark:border-coolGray-100 dark:text-coolGray-100 lg:px-8` : `bg-white text-gray-800 px-4 py-3 lg:px-8 font-semibold border border-gray-800 rounded dark:border-coolGray-100 dark:text-coolGray-100`}
+          className={phimDangChieu ? `active_class` : `non_active_class`}
           onClick={() => {
             const action = { type: SET_PHIM_DANG_CHIEU }
             dispatch(action);
@@ -132,7 +133,7 @@ const MultipleRowSlick = (props) => {
         </button>
         <button
           type="button"
-          className={!phimSapChieu ? `bg-white text-gray-800 px-4 py-3 lg:px-8 font-semibold border border-gray-800 rounded dark:border-coolGray-100 dark:text-coolGray-100` : `bg-gray-800 text-white ml-10 px-4 py-3 lg:px-8 font-semibold border border-gray-800 rounded dark:border-coolGray-100 dark:text-coolGray-100`}
+          className={!phimSapChieu ? `non_active_class` : `active_class`}
           onClick={() => {
             const action = { type: SET_PHIM_SAP_CHIEU }
             dispatch(action);

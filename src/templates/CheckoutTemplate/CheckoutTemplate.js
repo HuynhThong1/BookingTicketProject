@@ -20,7 +20,7 @@ const CheckoutTemplate = (props) => { //path, exact, Component
             if (innerWidth <= 420) {
                 setState(1);
             }
-            else if (innerWidth <= 769) {
+            else if (innerWidth <= 1024) {
                 setState(2);
             }
             else {
@@ -34,17 +34,14 @@ const CheckoutTemplate = (props) => { //path, exact, Component
             if (innerWidth <= 420) {
                 setState(1);
             }
-            else if (innerWidth <= 769) {
+            else if (innerWidth <= 1024) {
                 setState(2);
             }
             else {
                 setState(3);
             }
         }
-
-
-
-    })
+    }, [])
 
     if (!localStorage.getItem(USER_LOGIN)) {
         return <Redirect to="/login" />

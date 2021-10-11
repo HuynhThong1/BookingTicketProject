@@ -92,76 +92,76 @@ export default function HomeMenu(props) {
   };
   const createRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
-}
+  }
 
   const renderHeThongRapMobile = () => {
     return heThongRapChieu?.map((heThongRap, index) => {
-      return <Collapse  expandIconPosition="right" key={index}>
-       <Panel header={<div className="titleCinemaMobile">
-                        <img className="logoCinemasMobile" src={heThongRap.logo} />
-                        <div className="nameCinemasMobile">{heThongRap.maHeThongRap}</div>
-                    </div>} key={index} >
-                    <Collapse
-                            expandIconPosition="right"
-                            className="cinemaChildMobile"
-                        >  
-                        {
-                          heThongRap?.lstCumRap.map((lcd,indexs)=>{
-                            return  <Panel header={<div className="titleCinemasChildMobile">
-                            <img className="logoCinemasChildMobile" src={heThongRap.logo} />
-                            <div className="infoCinemasChildMobile">
-                                <div className="nameCinemasChildMobile">{lcd.tenCumRap}</div>
-                                <div className="addCinemasChildMobile">{lcd.diaChi}</div>
-                            </div>
-                            </div>} key={indexs}>
-                                <Collapse
-                                        expandIconPosition="right"
-                                        className="filmMobile"
-                                    >
-                                         {lcd.danhSachPhim.map((dsp, indexsss) => {
-                                            return <Panel showArrow={false} header={<div className="infoFilmCinemaMobile">
-                                                <img className="imgFilmMobile" src={dsp.hinhAnh} />
-                                                <div className="infoFilmMobileDetail">
-                                                    <span className="typeAgeMobile">C{createRandomNumber(18, 12)}</span>
-                                                    <span className="nameFilmCinemaMobile">
-                                                        {dsp.tenPhim}
-                                                    </span>
-                                                    <div className="timeReviewFilmMobile">
-                                                        {createRandomNumber(120, 90)} phút - {createRandomNumber(9.7, 3.4).toFixed(1)} IMDb
-                                                    </div>
-                                                </div>
-                                            </div>} key={indexsss}>
-                                                <div className="ml-2" style={{ fontWeight: '600', paddingBottom: 15 }}>{createRandomNumber(3, 2)}D Digital</div>
+      return <Collapse expandIconPosition="right" key={index}>
+        <Panel header={<div className="titleCinemaMobile">
+          <img className="logoCinemasMobile" src={heThongRap.logo} />
+          <div className="nameCinemasMobile">{heThongRap.maHeThongRap}</div>
+        </div>} key={index} >
+          <Collapse
+            expandIconPosition="right"
+            className="cinemaChildMobile"
+          >
+            {
+              heThongRap?.lstCumRap.map((lcd, indexs) => {
+                return <Panel header={<div className="titleCinemasChildMobile">
+                  <img className="logoCinemasChildMobile" src={heThongRap.logo} />
+                  <div className="infoCinemasChildMobile">
+                    <div className="nameCinemasChildMobile">{lcd.tenCumRap}</div>
+                    <div className="addCinemasChildMobile">{lcd.diaChi}</div>
+                  </div>
+                </div>} key={indexs}>
+                  <Collapse
+                    expandIconPosition="right"
+                    className="filmMobile"
+                  >
+                    {lcd.danhSachPhim.map((dsp, indexsss) => {
+                      return <Panel showArrow={false} header={<div className="infoFilmCinemaMobile">
+                        <img className="imgFilmMobile" src={dsp.hinhAnh} />
+                        <div className="infoFilmMobileDetail">
+                          <span className="typeAgeMobile">C{createRandomNumber(18, 12)}</span>
+                          <span className="nameFilmCinemaMobile">
+                            {dsp.tenPhim}
+                          </span>
+                          <div className="timeReviewFilmMobile">
+                            {createRandomNumber(120, 90)} phút - {createRandomNumber(9.7, 3.4).toFixed(1)} IMDb
+                          </div>
+                        </div>
+                      </div>} key={indexsss}>
+                        <div className="ml-2" style={{ fontWeight: '600', paddingBottom: 15 }}>{createRandomNumber(3, 2)}D Digital</div>
 
-                                                <div key={indexsss + 300} className="flex flex-wrap">
-                                                    {dsp.lstLichChieuTheoPhim.map((ds, indexssss) => {
-                                                        if (indexssss <= 6) {
-                                                          if (localStorage.getItem(USER_LOGIN)) {
-                                                            return <NavLink className="movieTime" to={`/checkout/${ds.maLichChieu}`} key={index}>
-                                                              {moment(ds.ngayChieuGioChieu).format('hh:mm A')}
-                                                            </NavLink>
-                                                          } else {
-                                                            return <a onClick={clickMovie} className="movieTime" key={index}>
-                                                              {moment(ds.ngayChieuGioChieu).format('hh:mm A')}
-                                                            </a>
-                                                          }
-                                                        }
-                                                    })}
-                                                </div>
-                                            </Panel>
-                                        })}
-                                </Collapse>
-                        </Panel>
-                          })
-                        }
-                    </Collapse>
+                        <div key={indexsss + 300} className="flex flex-wrap">
+                          {dsp.lstLichChieuTheoPhim.map((ds, indexssss) => {
+                            if (indexssss <= 6) {
+                              if (localStorage.getItem(USER_LOGIN)) {
+                                return <NavLink className="movieTime" to={`/checkout/${ds.maLichChieu}`} key={index}>
+                                  {moment(ds.ngayChieuGioChieu).format('hh:mm A')}
+                                </NavLink>
+                              } else {
+                                return <a onClick={clickMovie} className="movieTime" key={index}>
+                                  {moment(ds.ngayChieuGioChieu).format('hh:mm A')}
+                                </a>
+                              }
+                            }
+                          })}
+                        </div>
+                      </Panel>
+                    })}
+                  </Collapse>
+                </Panel>
+              })
+            }
+          </Collapse>
         </Panel>
-    </Collapse>
+      </Collapse>
     })
   }
-      
-  
-  
+
+
+
 
 
   return (

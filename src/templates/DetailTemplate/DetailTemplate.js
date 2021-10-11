@@ -21,7 +21,7 @@ export const DetailTemplate = (props) => { //path, exact, Component
             if (innerWidth <= 420) {
                 setState(1);
             }
-            else if (innerWidth <= 769) {
+            else if (innerWidth <= 1024) {
                 setState(2);
             }
             else {
@@ -35,7 +35,7 @@ export const DetailTemplate = (props) => { //path, exact, Component
             if (innerWidth <= 420) {
                 setState(1);
             }
-            else if (innerWidth <= 769) {
+            else if (innerWidth <= 1024) {
                 setState(2);
             }
             else {
@@ -57,11 +57,11 @@ export const DetailTemplate = (props) => { //path, exact, Component
                 return <props.ComponentIpad {...propsRoute} />
             }
         }
-        // return <props.Component {...propsRoute} />
+        return <props.Component {...propsRoute} />
     }
 
 
-    return <Route {...restProps} render={(propsRoute) => { //props.location, props.history, props.match
+    return <Route {...restProps} render={(propsRoute) => {
         return <Fragment>
             <Header {...propsRoute} />
 

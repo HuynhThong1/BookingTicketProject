@@ -5,12 +5,16 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { capNhatNguoiDungAction, layDanhSachNguoiDungAction, layThongTinTaiKhoanAction } from '../../redux/actions/QuanLyNguoiDungAction';
 
-import { Button, Modal } from 'antd';
+import { Button, Modal, Popover } from 'antd';
 import './Profile.scss';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { GROUPID } from '../../Util/setting';
+import { ACCESS_TOKEN, GROUPID, USER_LOGIN } from '../../Util/setting';
+import { history } from '../../App';
+
+import { EditOutlined, LogoutOutlined, HistoryOutlined, ImportOutlined } from '@ant-design/icons';
+
 
 export default function Profile() {
 
@@ -121,17 +125,40 @@ export default function Profile() {
                         <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">Email: {thongTinNguoiDung.email}</p>
                         <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">Số Điện Thoại: {thongTinNguoiDung.soDT}</p>
                         <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">Tài Khoản: {thongTinNguoiDung.taiKhoan}</p>
-                        {/* <p className="pt-2 text-gray-600 text-xs lg:text-sm flex items-center justify-center lg:justify-start">Nhóm: {userLogin.maNhom}</p> */}
-                        <div className="pt-12 flex items-center justify-between">
-                            <button className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-full" onClick={showModal}>
-                                Cập Nhật Thông Tin
-                            </button>
-                            <button className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-full" onClick={() => {
-                                setIsLichSuDatVeModal(true)
-                            }}>
-                                Xem lịch sử đặt vé
-                            </button>
+                        <div className="pt-5 flex items-center justify-between">
+
+                            {thongTinNguoiDung.maLoaiNguoiDung === 'QuanTri' ? (<div className="">
+                                <button className="bg-black text-white duration-300 hover:bg-yellow-400 hover:text-black font-bold py-2 px-10 rounded-md" onClick={() => {
+                                    history.push('/admin');
+                                }}>
+                                    Quản Lý
+                                </button>
+                            </div>) : ''}
+
+                            <div>
+                                <Popover content="Sửa Thông Tin"><EditOutlined onClick={showModal} className="text-2xl hover:text-yellow-400 duration-300 mr-5" /></Popover>
+                                <Popover content="Xem Lịch Sử Đặt Vé"><HistoryOutlined onClick={() => {
+                                    setIsLichSuDatVeModal(true)
+                                }} className="text-2xl hover:text-yellow-400 duration-300 mr-5" /></Popover>
+                                <Popover content="Đăng Xuất">
+                                    <ImportOutlined onClick={() => {
+                                        localStorage.removeItem(USER_LOGIN);
+                                        localStorage.removeItem(ACCESS_TOKEN);
+                                        history.push('/');
+                                        window.location.reload();
+                                    }} className="text-2xl hover:text-yellow-400 duration-300 mr-5" />
+                                </Popover>
+                            </div>
+
+
+
+
+
+
+
+
                         </div>
+
 
                         <Modal title="Cập Nhật Thông Tin" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} className="capNhatProfile" footer={null}>
                             <form onSubmit={formik.handleSubmit}>
@@ -173,12 +200,12 @@ export default function Profile() {
                 {/*Img Col*/}
                 <div className="w-full lg:w-2/5">
                     {/* Big profile image for side bar (desktop) */}
-                    <img src="https://images.unsplash.com/photo-1560109947-543149eceb16?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80" className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block" alt="..." />
+                    <img src="https://images.unsplash.com/photo-1560109947-543149eceb16?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80" className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block" alt="..." style={{ height: '520px' }} />
                     {/* Image from: http://unsplash.com/photos/MP0IUfwrn0A */}
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
 

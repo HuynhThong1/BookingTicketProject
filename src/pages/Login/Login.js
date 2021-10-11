@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import "./Login.scss";
 import * as Yup from 'yup';
 import { GROUPID } from '../../Util/setting';
+import bg from '../../assets/footer-bg.jpg';
 
 export default function Login(props) {
 
@@ -84,7 +85,7 @@ export default function Login(props) {
 
     return (
 
-        <div className="flex justify-center items-center bg-login h-screen">
+        <div className="flex justify-center items-center bg-login h-screen" style={{ backgroundImage: `url(${bg})` }}>
             <div className="form-structure">
                 <div className={`signup ${classRegister}`}>
                     <h2 className="form-title" id="signup" onClick={(e) => {

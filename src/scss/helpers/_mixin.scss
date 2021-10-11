@@ -1,3 +1,13 @@
+@mixin flex($aligin-item, $justify-content) {
+    display: flex;
+    align-items: $aligin-item;
+    justify-content: $justify-content;
+}
+
+@mixin overlay {
+    background-color: rgba($color: #000000, $alpha: 0.6);
+}
+
 @mixin styleText($fs, $color, $fw) {
     font-size: $fs;
     color: $color;
@@ -224,7 +234,7 @@
             color: #000;
             text-shadow: 0 1px 0 #fff;
 
-            &:focus{
+            &:focus {
                 outline: none;
             }
         }
@@ -245,15 +255,14 @@
                 outline: 0;
 
                 .modal-body {
-                    overflow-y:unset;
-                    overflow-x:unset;
+                    overflow-y: unset;
+                    overflow-x: unset;
                     width: 100%;
                     padding: 0;
                     padding-bottom: 56.25%;
                     padding-top: 25px;
                     height: 0;
                     position: relative;
-                    
 
                     iframe {
                         position: absolute;
@@ -274,17 +283,20 @@
     }
 }
 
-@mixin responsive($screen){
-    @if(map-has-key($map: $breakpoints, $key: $screen)){
+@mixin responsive($screen) {
+    @if (map-has-key($map: $breakpoints, $key: $screen)) {
         // tìm thấy màn hình
         // Lấy giá trị từ tên màn hình
         // $value chứ giá trị lấy được
-        $value:map-get($map: $breakpoints, $key: $screen);
+        $value: map-get(
+            $map: $breakpoints,
+            $key: $screen,
+        );
 
-        @media screen  and (max-width: $value){
+        @media screen and (max-width: $value) {
             @content;
         }
-    }@else{
+    } @else {
         @warn 'Màn hình không tồn tại';
     }
 }
