@@ -108,7 +108,7 @@
 		}
 
 		.submit-btn {
-			background-color: rgba(0, 0, 0, 0.411);
+			background-color: rgba(0, 0, 0, 0.5);
 			color: rgba(256, 256, 256, 0.7);
 			border: 0;
 			border-radius: 15px;
@@ -125,7 +125,7 @@
 
 			&:hover {
 				transition: all 0.3s ease;
-				background-color: rgb(0, 0, 0);
+				background-color: rgba(0, 0, 0, 1);
 			}
 		}
 	}
@@ -209,7 +209,7 @@
 			}
 
 			.submit-btn {
-				background-color: rgba(143, 41, 41, 0.507);
+				background-color: rgba(251, 191, 36, 0.6);
 				// color: rgba(256, 256, 256, 0.7);
 				color: #000;
 				border: 0;
@@ -227,7 +227,7 @@
 
 				&:hover {
 					transition: all 0.3s ease;
-					background-color: rgba(143, 41, 41, 0.945);
+					background-color: rgba(251, 191, 36, 1);
 				}
 			}
 		}

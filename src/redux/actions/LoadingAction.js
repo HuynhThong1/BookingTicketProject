@@ -2,7 +2,7 @@ import { DISPLAY_LOADING, HIDE_LOADING } from "./types/LoadingType"
 
 
 
-export const displayLoadingAction =  {
+export const displayLoadingAction = {
     type: DISPLAY_LOADING
 }
 

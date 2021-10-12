@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { datGheAction, datVeAction, layChiTietPhongVeAction } from '../../redux/actions/QuanLyDatVeAction';
 import style from './Checkout.module.scss';
 import './Checkout.scss';
-import { CloseOutlined, CheckOutlined } from '@ant-design/icons'
-import { Menu, Dropdown, Button, Space } from 'antd';
+import { Menu, Dropdown } from 'antd';
 import { CHANGE_TAB_ACTIVE, DAT_GHE } from '../../redux/actions/types/QuanLyDatVeType';
 import _ from 'lodash';
 import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe';
@@ -20,12 +19,14 @@ import { Link, NavLink } from 'react-router-dom';
 const { TabPane } = Tabs;
 
 
+
 function Checkout(props) {
 
 
     const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer);
 
     const { chiTietPhongVe, danhSachGheDangDat, danhSachGheKhachDat } = useSelector(state => state.QuanLyDatVeReducer);
+
 
 
     const dispatch = useDispatch();
@@ -94,8 +95,6 @@ function Checkout(props) {
     const { thongTinPhim, danhSachGhe } = chiTietPhongVe;
 
 
-
-
     const renderGhe = () => {
         return danhSachGhe.map((ghe, index) => {
 
@@ -119,20 +118,15 @@ function Checkout(props) {
             if (indexGheKD !== -1) {
                 classGheKhachDat = 'gheKhachDat';
             }
-
             return <Fragment key={index}>
                 <button type="button" className={`ghe ${classGheVip}  ${classGheDaDat} ${classGheDangDat} ${classGheDaDuocDat} ${classGheKhachDat} text-center`} disabled={ghe.daDat || classGheKhachDat !== ''} onClick={() => {
                     dispatch(datGheAction(ghe, props.match.params.id))
                 }} key={index} style={{ fontSize: 11 }}>
-
-                    {/* {ghe.daDat ? classGheDaDuocDat !== '' ? <CheckOutlined style={{ fontWeight: 'bold' }} /> : <CloseOutlined style={{ fontWeight: 'bold' }} /> : classGheKhachDat !== '' ? ghe.stt : ghe.stt} */}
-                    {/* {classGheDangDat !== '' ? ghe.stt : ''} */}
                     {classGheDangDat !== '' ? ghe.stt : <Fragment><span className="opacity-0">ghe</span></Fragment>}
-
                 </button>
 
                 {(index + 1) % 16 === 0 ? <br /> : ''}
-            </Fragment>
+            </Fragment >
         })
     }
 
@@ -142,6 +136,7 @@ function Checkout(props) {
     if (danhSachGheDangDat.length === 0) {
         classBtnDatVe = 'disabled';
     }
+
 
     return (
         <div className="min-h-screen">
@@ -156,6 +151,7 @@ function Checkout(props) {
                         </div>
                         <div className="mt-8">
                             {renderGhe()}
+
                         </div>
                     </div>
 
@@ -198,14 +194,6 @@ function Checkout(props) {
                     <p>Ngày Chiếu: {thongTinPhim.ngayChieu} - {thongTinPhim.gioChieu}</p>
 
                     <hr />
-                    {/* <div className="flex justify-between my-5 px-1">
-                        <div>
-                            <span className="text-red-400 text-lg">Ghế</span>
-                        </div>
-                        <div>
-                            <span className="text-green-400 text-lg">0 đ</span>
-                        </div>
-                    </div> */}
 
                     <div className="scroll__bar__custom" style={{ overflow: 'auto', height: 300, }}>
                         <table className="table-fixed w-full text-left">
@@ -242,7 +230,6 @@ function Checkout(props) {
                     </div>
 
                     <hr />
-                    {/* py-4 bg-green-400 w-full text-center text-2xl text-white cursor-pointer rounded-sm */}
                     <div className="mb-0 absolute left-0 right-0 bottom-0">
                         <div className={`${classBtnDatVe} checkout-button flex items-center justify-center`} onClick={() => {
                             const thongTinDatVe = new ThongTinDatVe();
@@ -319,7 +306,7 @@ export default function CheckoutTab(props) {
             <TabPane tab="KẾT QUẢ ĐẶT VÉ" key="2">
                 <KetQuaDatVe {...props} />
             </TabPane>
-            <TabPane style={{}} tab={<NavLink to="/" className="text-black">TRANG CHỦ</NavLink>} key="3" >
+            <TabPane style={{}} tab={<NavLink to="/" className="text-black">TRANG CHỦ</NavLink>}>
                 <KetQuaDatVe {...props} />
             </TabPane>
         </Tabs>
@@ -330,11 +317,7 @@ export default function CheckoutTab(props) {
 
 function KetQuaDatVe(props) {
 
-
     const { thongTinNguoiDung } = useSelector(state => state.QuanLyNguoiDungReducer);
-
-
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -381,9 +364,6 @@ function KetQuaDatVe(props) {
 
     </div>
 }
-
-
-
 
 const UserProfile = styled.div`
     width: 50px;

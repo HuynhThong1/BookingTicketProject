@@ -26,20 +26,20 @@ export default function Footer(props) {
         </div>
         <div className="footer__content__menus">
           <div className="footer__content__menu">
-            <Link to="/">Home</Link>
-            <Link to="/">Contact us</Link>
-            <Link to="/">Term of services</Link>
-            <Link to="/">About us</Link>
+            <Link to="/">Trang Chủ</Link>
+            <Link to="/">Liên Hệ</Link>
+            <Link to="/">Dịch Vụ</Link>
+            <Link to="/">Thông Tin</Link>
           </div>
           <div className="footer__content__menu">
-            <Link to="/">Live</Link>
+            <Link to="/">Thỏa Thuận Sử Dụng</Link>
+            <Link to="/">Quy Chế Hoạt Động</Link>
+            <Link to="/">Quyền Lợi Thành Viên</Link>
+            <Link to="/">Chính Sách Bảo Mật</Link>
+          </div>
+          <div className="footer__content__menu">
             <Link to="/">FAQ</Link>
-            <Link to="/">Premium</Link>
-            <Link to="/">Pravacy policy</Link>
-          </div>
-          <div className="footer__content__menu">
-            <Link to="/">You must watch</Link>
-            <Link to="/">Recent release</Link>
+            <Link to="/">Brand Guidelines</Link>
             <Link to="/">Top IMDB</Link>
           </div>
         </div>

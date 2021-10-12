@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Route } from 'react-router-dom';
 import Footer from "../HomeTemplate/Layout/Footer/Footer";
 import Header from "../HomeTemplate/Layout/Header/Header";
+import { useWindowSize } from 'react-use';
 
 
 
@@ -10,54 +11,26 @@ export const DetailTemplate = (props) => { //path, exact, Component
 
     const { Component, ...restProps } = props;
 
-    const [state, setState] = useState(3); //1 mobile (ip 6/7 ip 6/7plus), 2 ipad, 3 desktop
+    const { width, height } = useWindowSize();
 
     useEffect(() => {
         window.scrollTo(0, 0);
-
-
-        window.onload = () => {
-            let { innerWidth, innerHeight } = window;
-            if (innerWidth <= 420) {
-                setState(1);
-            }
-            else if (innerWidth <= 1024) {
-                setState(2);
-            }
-            else {
-                setState(3);
-            }
-        }
-
-        window.onresize = () => {
-            let { innerWidth, innerHeight } = window;
-
-            if (innerWidth <= 420) {
-                setState(1);
-            }
-            else if (innerWidth <= 1024) {
-                setState(2);
-            }
-            else {
-                setState(3);
-            }
-        }
     })
 
     const renderComponent = (propsRoute) => {
-        if (state === 3) {
-            return <props.Component {...propsRoute} />
-        } else if (state === 1) {
+
+        if (width <= 420) {
             if (props.ComponentMobile) {
                 return <props.ComponentMobile {...propsRoute} />
             }
-        }
-        else if (state === 2) {
+        } else if (width <= 1024) {
             if (props.ComponentIpad) {
                 return <props.ComponentIpad {...propsRoute} />
             }
         }
-        return <props.Component {...propsRoute} />
+        else {
+            return <props.Component {...propsRoute} />
+        }
     }
 
 

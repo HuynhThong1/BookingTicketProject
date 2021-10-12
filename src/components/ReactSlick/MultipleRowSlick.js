@@ -126,8 +126,6 @@ const MultipleRowSlick = (props) => {
             dispatch(action);
             setPhimDangChieu(true);
             setPhimSapChieu(false);
-
-
           }}>
           ĐANG CHIẾU
         </button>
