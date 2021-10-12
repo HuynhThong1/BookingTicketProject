@@ -120,7 +120,7 @@ const MultipleRowSlick = (props) => {
         <button
           type="button"
           style={{ marginRight: 30 }}
-          className={phimDangChieu ? `active_class` : `non_active_class`}
+          className={`tab_anim ${phimDangChieu ? `active_class` : `non_active_class`}`}
           onClick={() => {
             const action = { type: SET_PHIM_DANG_CHIEU }
             dispatch(action);
@@ -131,7 +131,7 @@ const MultipleRowSlick = (props) => {
         </button>
         <button
           type="button"
-          className={!phimSapChieu ? `non_active_class` : `active_class`}
+          className={`tab_anim ${!phimSapChieu ? `non_active_class` : `active_class`}`}
           onClick={() => {
             const action = { type: SET_PHIM_SAP_CHIEU }
             dispatch(action);

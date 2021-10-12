@@ -65,17 +65,17 @@ export default function Header(props) {
         </div>
         <ul className="header__nav">
 
-          <li className="active">
+          <li className={pathname==='/' ? 'active' : ''}>
             <Link to="/" className="text-white md:text-black hover:text-yellow-400">
               <HomeOutlined />
             </Link>
           </li>
 
-          {_.isEmpty(userLogin) ? (<li className="">
+          {_.isEmpty(userLogin) ? (<li className={pathname==='/login' ? 'active' : ''}>
             <Link to="/login" className="text-white md:text-black hover:text-yellow-400">
               <UserOutlined />
             </Link>
-          </li>) : (<li className="">
+          </li>) : (<li className={pathname==='/profile' ? 'active' : ''}>
             <Link to="/profile" className="text-white md:text-black hover:text-yellow-400">
               <UserOutlined />
             </Link>
