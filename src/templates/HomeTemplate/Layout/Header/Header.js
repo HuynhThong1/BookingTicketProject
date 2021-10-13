@@ -29,7 +29,7 @@ export default function Header(props) {
   const { userLogin } = useSelector(state => state.QuanLyNguoiDungReducer);
 
   const [sidebar, setSidebar] = useState(false);
-  const [activepage, setActivePage] = useState(0);
+  const [activepage, setActivePage] = useState(1);
 
   const showSidebar = () => setSidebar(!sidebar);
 
