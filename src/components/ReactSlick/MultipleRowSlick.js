@@ -4,28 +4,34 @@ import styleSlick from "./MultipleRowSlick.module.scss";
 import Film from "../Film/Film";
 import { SET_PHIM_DANG_CHIEU, SET_PHIM_SAP_CHIEU } from "../../redux/actions/types/QuanLyPhimType";
 import { useDispatch } from "react-redux";
+import {  LeftOutlined, RightOutlined  } from '@ant-design/icons';
+
 import './MultipleRowSlick.scss';
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
-      className={`${className} ${styleSlick["slick-prev"]}`}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    ></div>
-  );
+        className="slick-arrow ArrowCustom"
+        style={{...style, right: -60}}
+        onClick={onClick}
+    >
+        <RightOutlined className={'ArrowRight'} style={{fontSize:'4rem'}}/>
+    </div>
+);
 }
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
-      className={`${className} ${styleSlick["slick-prev"]}`}
-      style={{ ...style, display: "block", left: "-50px" }}
-      onClick={onClick}
-    ></div>
-  );
+        className="slick-arrow ArrowCustom"
+        style={{...style,left: -65}}
+        onClick={onClick}
+    >
+        <LeftOutlined  className={'ArrowLeft'} style={{fontSize:'4rem'}}/>
+    </div>
+);
 }
 
 const MultipleRowSlick = (props) => {
@@ -141,7 +147,7 @@ const MultipleRowSlick = (props) => {
           SẮP CHIẾU
         </button>
       </div>
-      <Slider {...settings}>{renderFilms()}</Slider>
+      <Slider {...settings} >{renderFilms()}</Slider>
     </div>
   );
 };
