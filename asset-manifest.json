@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/BookingTicketProject/static/css/main.19cf2c45.chunk.css",
+    "main.js": "/BookingTicketProject/static/js/main.0709109a.chunk.js",
+    "main.js.map": "/BookingTicketProject/static/js/main.0709109a.chunk.js.map",
+    "runtime-main.js": "/BookingTicketProject/static/js/runtime-main.07431e8e.js",
+    "runtime-main.js.map": "/BookingTicketProject/static/js/runtime-main.07431e8e.js.map",
+    "static/css/2.171f4f24.chunk.css": "/BookingTicketProject/static/css/2.171f4f24.chunk.css",
+    "static/js/2.17191da2.chunk.js": "/BookingTicketProject/static/js/2.17191da2.chunk.js",
+    "static/js/2.17191da2.chunk.js.map": "/BookingTicketProject/static/js/2.17191da2.chunk.js.map",
+    "static/js/3.8e7d8eca.chunk.js": "/BookingTicketProject/static/js/3.8e7d8eca.chunk.js",
+    "static/js/3.8e7d8eca.chunk.js.map": "/BookingTicketProject/static/js/3.8e7d8eca.chunk.js.map",
+    "index.html": "/BookingTicketProject/index.html",
+    "static/css/2.171f4f24.chunk.css.map": "/BookingTicketProject/static/css/2.171f4f24.chunk.css.map",
+    "static/css/main.19cf2c45.chunk.css.map": "/BookingTicketProject/static/css/main.19cf2c45.chunk.css.map",
+    "static/js/2.17191da2.chunk.js.LICENSE.txt": "/BookingTicketProject/static/js/2.17191da2.chunk.js.LICENSE.txt",
+    "static/media/NoImage.3f6a99cc.png": "/BookingTicketProject/static/media/NoImage.3f6a99cc.png",
+    "static/media/footer-bg.67e95f05.jpg": "/BookingTicketProject/static/media/footer-bg.67e95f05.jpg",
+    "static/media/slick-theme.css": "/BookingTicketProject/static/media/slick.c94f7671.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.07431e8e.js",
+    "static/css/2.171f4f24.chunk.css",
+    "static/js/2.17191da2.chunk.js",
+    "static/css/main.19cf2c45.chunk.css",
+    "static/js/main.0709109a.chunk.js"
+  ]
+}
