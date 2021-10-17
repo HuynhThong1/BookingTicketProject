@@ -13,5 +13,30 @@
     &:hover{
         @apply text-yellow-400;
         font-size: 17px;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.015) 0px 5px 10px;    }
+}
+.ArrowCustom {
+    display: flex !important;
+    position: absolute !important;
+    bottom: 0;
+    top: 0;
+    align-items: center !important;
+    transition: all 0.6s;
+    &:hover {
+        transform: scale(1.5);
+        .ArrowLeft {
+            transition: all 0.7s;
+            &:hover {
+                color: #FBBF24;
+
+            }
+        }
+        .ArrowRight {
+            transition: all 0.7s;
+            &:hover {
+                color: #FBBF24;
+            }
+        }
     }
 }
+
