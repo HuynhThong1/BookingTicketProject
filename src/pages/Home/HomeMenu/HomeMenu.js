@@ -46,7 +46,7 @@ export default function HomeMenu(props) {
                   <div className="text-left ml-2">
                     <h1>{cumRap.tenCumRap}</h1>
                     <p className="text-black opacity-70 text-xs mb-0">{cumRap.diaChi.length > 20 ? cumRap.diaChi.slice(0, 40) + '...' : cumRap.diaChi}</p>
-                    <p className="text-red-400">[detail]</p>
+                    <p className="text-red-400">[Chi Tiếts]</p>
                   </div>
                 </div>
 
@@ -98,7 +98,7 @@ export default function HomeMenu(props) {
     return heThongRapChieu?.map((heThongRap, index) => {
       return <Collapse expandIconPosition="right" key={index}>
         <Panel header={<div className="titleCinemaMobile">
-          <img className="logoCinemasMobile" src={heThongRap.logo} />
+          <img className="logoCinemasMobile" src={heThongRap.logo} alt={heThongRap.logo} />
           <div className="nameCinemasMobile">{heThongRap.maHeThongRap}</div>
         </div>} key={index} >
           <Collapse
@@ -108,7 +108,7 @@ export default function HomeMenu(props) {
             {
               heThongRap?.lstCumRap.map((lcd, indexs) => {
                 return <Panel header={<div className="titleCinemasChildMobile">
-                  <img className="logoCinemasChildMobile" src={heThongRap.logo} />
+                  <img className="logoCinemasChildMobile" src={heThongRap.logo} alt={heThongRap.logo} />
                   <div className="infoCinemasChildMobile">
                     <div className="nameCinemasChildMobile">{lcd.tenCumRap}</div>
                     <div className="addCinemasChildMobile">{lcd.diaChi}</div>
@@ -120,7 +120,7 @@ export default function HomeMenu(props) {
                   >
                     {lcd.danhSachPhim.map((dsp, indexsss) => {
                       return <Panel showArrow={false} header={<div className="infoFilmCinemaMobile">
-                        <img className="imgFilmMobile" src={dsp.hinhAnh} />
+                        <img className="imgFilmMobile" src={dsp.hinhAnh} alt={dsp.hinhAnh} />
                         <div className="infoFilmMobileDetail">
                           <span className="typeAgeMobile">C{createRandomNumber(18, 12)}</span>
                           <span className="nameFilmCinemaMobile">
@@ -159,10 +159,6 @@ export default function HomeMenu(props) {
       </Collapse>
     })
   }
-
-
-
-
 
   return (
     <>

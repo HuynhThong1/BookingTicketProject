@@ -121,7 +121,7 @@ export default function Profile() {
                         {/* Image for mobile view*/}
                         <div className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: 'url("images/user.png")' }} />
                         <h1 className="text-3xl font-bold pt-8 lg:pt-0">{thongTinNguoiDung.hoTen}</h1>
-                        <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25" />
+                        <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-yellow-700 opacity-25" />
                         <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">Email: {thongTinNguoiDung.email}</p>
                         <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">Số Điện Thoại: {thongTinNguoiDung.soDT}</p>
                         <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">Tài Khoản: {thongTinNguoiDung.taiKhoan}</p>

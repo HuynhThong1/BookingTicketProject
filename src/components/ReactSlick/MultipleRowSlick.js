@@ -30,12 +30,6 @@ function SamplePrevArrow(props) {
 
 const MultipleRowSlick = (props) => {
 
-  // const {dangChieu, sapChieu} = useSelector(state => state.QuanLyPhimReducer);
-
-  // let activeClassDC = dangChieu === true ? 'active_Film' : 'none_active_Film';
-  // let activeClassSC = sapChieu === true ? 'none_active_Film' : 'active_Film'; 
-
-
   const [phimDangChieu, setPhimDangChieu] = useState(true);
   const [phimSapChieu, setPhimSapChieu] = useState(false);
 
@@ -52,20 +46,6 @@ const MultipleRowSlick = (props) => {
     });
   };
 
-  // const settings = {
-  //   className: "center variable-width",
-  //   centerMode: true,
-  //   infinite: true,
-  //   centerPadding: "20px",
-  //   slidesToShow: 4,
-  //   speed: 500,
-  //   rows: 1,
-  //   slidesPerRow: 2,
-  //   variableWidth: true,
-  //   nextArrow: <SampleNextArrow />,
-  //   prevArrow: <SamplePrevArrow />,
-  // };
-
   var settings = {
     className: "center variable-width",
     dots: true,
@@ -79,7 +59,7 @@ const MultipleRowSlick = (props) => {
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1025,
         settings: {
           slidesToShow: 2,
           centerPadding: "1px",

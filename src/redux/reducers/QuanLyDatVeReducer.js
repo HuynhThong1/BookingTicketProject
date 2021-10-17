@@ -27,6 +27,7 @@ export const QuanLyDatVeReducer = (state = stateDefault, action) => {
 
         case SET_CHI_TIET_PHONG_VE: {
             state.chiTietPhongVe = action.chiTietPhongVe;
+            // state.danhSachGheDangDat = [];
             return { ...state };
         }
 

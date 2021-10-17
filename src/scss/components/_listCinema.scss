@@ -1,4 +1,8 @@
 .movie__listCinemas {
+    border: 1px solid #ebebec;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+
     .ant-collapse {
         background-color: $color-white-0;
     }
@@ -35,17 +39,17 @@
                 color: $color-gray-0;
             }
         }
-        .infoFilmCinemaMobile{
+        .infoFilmCinemaMobile {
             display: flex;
             align-items: center;
-            .imgFilmMobile{
+            .imgFilmMobile {
                 width: 40px;
                 height: 40px;
                 border-radius: 3px;
                 margin-right: 10px;
             }
-            .infoFilmMobileDetail{
-                .typeAgeMobile{
+            .infoFilmMobileDetail {
+                .typeAgeMobile {
                     color: $color-white-0;
                     background-color: $color-red-0;
                     border-radius: 4px;
@@ -54,10 +58,10 @@
                     display: inline-block;
                     margin-right: 8px;
                 }
-                .nameFilmCinemaMobile{
+                .nameFilmCinemaMobile {
                     font-weight: 600;
                 }
-                .timeReviewFilmMobile{
+                .timeReviewFilmMobile {
                     font-size: 12px;
                     color: $color-gray-0;
                 }
@@ -72,19 +76,19 @@
             background-color: #fafafa;
             border: 1px solid #e4e4e4;
             cursor: pointer;
-            margin:0 10px 10px 0 !important;
+            margin: 0 10px 10px 0 !important;
         }
-        .cinemaChildMobile{
+        .cinemaChildMobile {
             .ant-collapse-content > .ant-collapse-content-box {
-                padding: 10px 0 ;
-                border:0;
+                padding: 10px 0;
+                border: 0;
             }
             .ant-collapse.ant-collapse-icon-position-right.filmMobile {
                 border: none;
             }
         }
         .ant-collapse.ant-collapse-icon-position-right.cinemaChildMobile {
-            border:none;
+            border: none;
             border-radius: 20px !important;
         }
     }
