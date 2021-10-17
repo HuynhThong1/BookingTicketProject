@@ -223,7 +223,7 @@ export default function CheckoutMobile(props) {
                     <div className="seat-map">
                         <div className="panzoom">
                             <div className="screen flex justify-center">
-                                <img src="../../Images/screen.png" alt="screen" style={{ width: '90%' }} />
+                                <img src="../../assets/screen.png" alt="screen" style={{ width: '90%' }} />
                             </div>
 
                             <div className="list-seat">
