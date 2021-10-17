@@ -10,8 +10,32 @@
     -moz-filter: drop-shadow(0px 112px 116px #000000);
 }
 
+.trapezoid-mobile {
+    border-bottom: 25px solid gray;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    height: 0;
+    width: 80%;
+    opacity: 0.4;
+    filter: drop-shadow(0px 75px 80px #000000);
+    -webkit-filter: drop-shadow(0px 75px 80px #000000);
+    -moz-filter: drop-shadow(0px 75px 80px #000000);
+}
+
+.trapezoid-ipad {
+    border-bottom: 50px solid gray;
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    height: 0;
+    width: 90%;
+    opacity: 0.4;
+    filter: drop-shadow(0px 112px 116px #000000);
+    -webkit-filter: drop-shadow(0px 112px 116px #000000);
+    -moz-filter: drop-shadow(0px 112px 116px #000000);
+}
+
 // ghế thường
-.ghe{ 
+.ghe {
     width: 35px;
     height: 35px;
     border-radius: 5px;
@@ -21,17 +45,15 @@
     color: #fff;
 }
 
-.gheDaDat{
-    background-color: rgb(232,76,76);
+.gheDaDat {
+    background-color: rgb(232, 76, 76);
     cursor: no-drop;
 }
 
-.getDangDat{
+.getDangDat {
     background-color: rgb(18, 192, 18) !important;
 }
 
-.gheVip{
+.gheVip {
     background-color: rgb(228, 74, 8);
 }
-
-

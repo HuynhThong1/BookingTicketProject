@@ -2,6 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react'
 import './Checkout.scss'
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import style from './Checkout.module.scss';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { connection } from '../..';
 import { datGheAction, datVeAction, layChiTietPhongVeAction } from '../../redux/actions/QuanLyDatVeAction';
@@ -223,8 +225,15 @@ export default function CheckoutIpad(props) {
                     </div>
                     <div className="seat-map">
                         <div className="panzoom">
-                            <div className="screen flex justify-center">
-                                <img src="../../Images/screen.png" alt="screen" style={{ width: '90%' }} />
+                            <div className="screen flex flex-col items-center mb-3">
+                                {/* <img src="../../assets/screen.png" alt="screen" style={{ width: '90%' }} />
+                                 */}
+                                <div className="bg-black" style={{ width: '90%', height: '10px' }}>
+
+                                </div>
+                                <div className={`${style['trapezoid-ipad']} text-center`}>
+                                    <h3 className="">Màn Hình</h3>
+                                </div>
                             </div>
 
                             <div className="list-seat">

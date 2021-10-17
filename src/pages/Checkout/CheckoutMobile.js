@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import styled from 'styled-components'
+import style from './Checkout.module.scss';
 import './Checkout.scss'
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -222,8 +223,15 @@ export default function CheckoutMobile(props) {
                     </div>
                     <div className="seat-map">
                         <div className="panzoom">
-                            <div className="screen flex justify-center">
-                                <img src="../../assets/screen.png" alt="screen" style={{ width: '90%' }} />
+                            <div className="screen flex flex-col items-center mb-3">
+                                {/* <img src="../../assets/screen.png" alt="screen" style={{ width: '90%' }} />
+                                 */}
+                                <div className="bg-black" style={{ width: '80%', height: '7px' }}>
+
+                                </div>
+                                <div className={`${style['trapezoid-mobile']} text-center`}>
+                                    <h3 className="text-xs">Màn Hình</h3>
+                                </div>
                             </div>
 
                             <div className="list-seat">
