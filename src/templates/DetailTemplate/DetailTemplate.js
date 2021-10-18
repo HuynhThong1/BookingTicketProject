@@ -1,13 +1,11 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { Route } from 'react-router-dom';
 import Footer from "../HomeTemplate/Layout/Footer/Footer";
 import Header from "../HomeTemplate/Layout/Header/Header";
 import { useWindowSize } from 'react-use';
 
 
-
-
-export const DetailTemplate = (props) => { //path, exact, Component
+const DetailTemplate = (props) => { //path, exact, Component
 
     const { Component, ...restProps } = props;
 
@@ -15,7 +13,7 @@ export const DetailTemplate = (props) => { //path, exact, Component
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    })
+    }, [])
 
     const renderComponent = (propsRoute) => {
 
@@ -46,3 +44,5 @@ export const DetailTemplate = (props) => { //path, exact, Component
 
     }} />
 }
+
+export default DetailTemplate;

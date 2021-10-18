@@ -1,0 +1,39 @@
+.desktop {
+    display: block;
+}
+
+.ipad {
+    display: none;
+}
+
+.mobile {
+    display: none;
+}
+
+@media screen and (max-width: 1025) {
+    .desktop {
+        display: none !important;
+    }
+
+    .ipad {
+        display: block !important;
+    }
+
+    .mobile {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 450) {
+    .desktop {
+        display: none !important;
+    }
+
+    .ipad {
+        display: none !important;
+    }
+
+    .mobile {
+        display: block !important;
+    }
+}

@@ -16,47 +16,47 @@ export default function DetailIpad(props) {
 
     const filmDetail = useSelector(state => state.QuanLyRapReducer.filmDetail);
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const showModal= () => {
-      setIsModalVisible(true)
+    const showModal = () => {
+        setIsModalVisible(true)
     }
     const handleOk = () => {
-      setIsModalVisible(false);
-  };
-  const getId = (url) => {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-    const match = url?.match(regExp);
-  
-    return (match && match[2].length === 11)
-      ? match[2]
-      : null;
-  }
-  const convertLink = (url) => {
-    return `https://www.youtube.com/embed/${getId(url)}`
-  }
-  const handleCancel = () => {
-      setIsModalVisible(false);
-  };
-  const getWindowDimensions = () => {
-    const { innerWidth: width, innerHeight: height } = window
-    return { width, height }
-  }
-  
-  const useWindowDimensions = () => {
-    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
-  
-    useEffect(() => {
-       const handleResize = () => setWindowDimensions(getWindowDimensions())
-  
-       window.addEventListener('resize', handleResize)
-  
-       return () => window.removeEventListener('resize', handleResize)
-  
-     }, [])
-  
-     return windowDimensions
-  }
-  const { width } = useWindowDimensions();
-  
+        setIsModalVisible(false);
+    };
+    const getId = (url) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url?.match(regExp);
+
+        return (match && match[2].length === 11)
+            ? match[2]
+            : null;
+    }
+    const convertLink = (url) => {
+        return `https://www.youtube.com/embed/${getId(url)}`
+    }
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+    const getWindowDimensions = () => {
+        const { innerWidth: width, innerHeight: height } = window
+        return { width, height }
+    }
+
+    const useWindowDimensions = () => {
+        const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
+
+        useEffect(() => {
+            const handleResize = () => setWindowDimensions(getWindowDimensions())
+
+            window.addEventListener('resize', handleResize)
+
+            return () => window.removeEventListener('resize', handleResize)
+
+        }, [])
+
+        return windowDimensions
+    }
+    const { width } = useWindowDimensions();
+
     console.log({ filmDetail })
 
     const dispatch = useDispatch();
@@ -95,10 +95,10 @@ export default function DetailIpad(props) {
                 blur={15} // default blur value is 10px
                 borderRadius={0} // default border radius value is 10px
             >
-                <div className="grid grid-cols-12">
+                <div className="grid grid-cols-12 mb-10">
                     <div className="col-span-8 col-start-1">
                         <div className="grid grid-cols-3">
-                            <div onClick={()=>showModal()}  className="col-span-1 h-60" >
+                            <div onClick={() => showModal()} className="col-span-1 h-60" >
                                 <img src={filmDetail.hinhAnh} alt={filmDetail.tenPhim} />
                             </div>
 
@@ -106,8 +106,8 @@ export default function DetailIpad(props) {
                             <div className="col-span-2 flex flex-col justify-center ml-10">
                                 <p className="text-white">{moment(filmDetail.ngayKhoiChieu).format('dd-mm-yyyy')}</p>
                                 <p className="text-xl text-white">{filmDetail.tenPhim}</p>
-                                <p className="text-white text-xs">{filmDetail.moTa.length > 200 ? filmDetail.moTa.slice(0, 200) + '...' : filmDetail.moTa}</p>
-
+                                <p className="text-white text-xs">{filmDetail.moTa}</p>
+                                {/* {filmDetail.moTa.length > 200 ? filmDetail.moTa.slice(0, 200) + '...' : filmDetail.moTa} */}
                             </div>
                         </div>
                     </div>
@@ -122,8 +122,6 @@ export default function DetailIpad(props) {
 
                         <div className="text-center">
                             <div className="star-icon">
-                                {/* <Rate style={{ color: '#ffe066 !important' }} allowHalf defaultValue={filmDetail.danhGia / 2} /> */}
-
                                 <Rate disabled allowHalf defaultValue={filmDetail.danhGia / 2} />
                             </div>
                             <h3 className="text-sm text-red-500">{filmDetail.danhGia}/10 Đánh giá</h3>
@@ -131,12 +129,12 @@ export default function DetailIpad(props) {
 
                     </div>
                 </div>
-        
+
                 {/* put film schedule code below this line */}
-                <div className="flex bg-white p-5 mt-10 " style={{}}>
+                <div className="flex bg-white p-5 mt-32" style={{}}>
                     <div>
                         <Tabs tabPosition={'left'}>
-                            {filmDetail?.heThongRapChieu.map((heThongRap, index) => {
+                            {filmDetail.heThongRapChieu?.map((heThongRap, index) => {
                                 return <TabPane tab={<div className="flex items-center">
                                     <img src={heThongRap.logo} width={50} className="rounded-full" alt={heThongRap.tenHeThongRap} />
                                     <h3 className="ml-5">{heThongRap.tenHeThongRap}</h3>
@@ -175,10 +173,10 @@ export default function DetailIpad(props) {
                     </div>
                 </div>
             </CustomCard>
-    <Modal visible={isModalVisible}    centered
-          style={{ width: (width / 100) }} footer onOk={handleOk} onCancel={handleCancel}>
-                <iframe style={{ width: '100%'}} height="400px" src={convertLink(filmDetail?.trailer)}></iframe>
-      </Modal>
+            <Modal visible={isModalVisible} centered
+                style={{ width: (width / 100) }} footer onOk={handleOk} onCancel={handleCancel}>
+                <iframe style={{ width: '100%' }} height="400px" src={convertLink(filmDetail?.trailer)}></iframe>
+            </Modal>
 
         </div>
     )

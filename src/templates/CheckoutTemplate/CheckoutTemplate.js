@@ -1,10 +1,8 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { Route } from 'react-router-dom';
 import { USER_LOGIN } from "../../Util/setting";
 import { Redirect } from "react-router";
 import { useWindowSize } from 'react-use';
-
-
 
 
 const CheckoutTemplate = (props) => { //path, exact, Component

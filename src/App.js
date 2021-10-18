@@ -31,9 +31,9 @@ import UserBooked from "./pages/Admin/UserBooked/UserBooked";
 import FilmShedule from "./pages/Admin/FilmSchedule/FilmsSchedule";
 import CheckoutMobile from "./pages/Checkout/CheckoutMobile";
 import CheckoutIpad from "./pages/Checkout/CheckoutIpad";
-import { DetailTemplate } from "./templates/DetailTemplate/DetailTemplate";
 import DetailMobile from "./pages/Detail/DetailMobile";
 import DetailIpad from "./pages/Detail/DetailIpad";
+import DetailTemplate from "./templates/DetailTemplate/DetailTemplate";
 
 
 // const CheckoutTemplateLazy = lazy(() => import('./templates/CheckoutTemplate/CheckoutTemplate'));
@@ -49,10 +49,10 @@ function App() {
         <HomeTemplate path="/home" exact Component={Home} />
         <HomeTemplate path="/contact" exact Component={Contact} />
         <HomeTemplate path="/news" exact Component={News} />
+
+
         {/* <HomeTemplate path="/detail/:id" exact Component={Detail} /> */}
         <DetailTemplate path="/detail/:id" exact Component={Detail} ComponentMobile={DetailMobile} ComponentIpad={DetailIpad} />
-
-        {/* <Route path="/register" exact Component={Register} /> */}
 
         <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} ComponentMobile={CheckoutMobile} ComponentIpad={CheckoutIpad} />
 

@@ -41,8 +41,6 @@ export default function CheckoutMobile(props) {
 
     useEffect(() => {
 
-
-
         //gọi hàm tạo ra 1 async function
         const action = layChiTietPhongVeAction(props.match.params.id)
         dispatch(action);

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CustomCard } from '@tsamantanis/react-glassmorphism'
 import '@tsamantanis/react-glassmorphism/dist/index.css'
 import moment from 'moment';
-import { Rate } from 'antd';
+import { Collapse, Rate } from 'antd';
 
 import { Tabs, } from 'antd';
 import { layThongTinChiTietPhim } from '../../redux/actions/QuanLyRapAction';
@@ -13,45 +13,47 @@ import Swal from 'sweetalert2'
 import { history } from '../../App';
 import { NavLink } from 'react-router-dom';
 import { Modal } from 'antd';
+import './Detail.scss';
 
 
 const { TabPane } = Tabs;
+const { Panel } = Collapse;
 
 export default function Detail(props) {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const showModal= () => {
-      setIsModalVisible(true)
+    const showModal = () => {
+        setIsModalVisible(true)
     }
     const handleOk = () => {
-      setIsModalVisible(false);
-  };
+        setIsModalVisible(false);
+    };
 
-  const handleCancel = () => {
-      setIsModalVisible(false);
-  };
-  
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
-  const getWindowDimensions = () => {
-    const { innerWidth: width, innerHeight: height } = window
-    return { width, height }
-  }
-  
-  const useWindowDimensions = () => {
-    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
-  
-    useEffect(() => {
-       const handleResize = () => setWindowDimensions(getWindowDimensions())
-  
-       window.addEventListener('resize', handleResize)
-  
-       return () => window.removeEventListener('resize', handleResize)
-  
-     }, [])
-  
-     return windowDimensions
-  }
-  const { width } = useWindowDimensions();
-  
+
+    const getWindowDimensions = () => {
+        const { innerWidth: width, innerHeight: height } = window
+        return { width, height }
+    }
+
+    const useWindowDimensions = () => {
+        const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
+
+        useEffect(() => {
+            const handleResize = () => setWindowDimensions(getWindowDimensions())
+
+            window.addEventListener('resize', handleResize)
+
+            return () => window.removeEventListener('resize', handleResize)
+
+        }, [])
+
+        return windowDimensions
+    }
+    const { width } = useWindowDimensions();
+
 
     const filmDetail = useSelector(state => state.QuanLyRapReducer.filmDetail);
 
@@ -86,17 +88,17 @@ export default function Detail(props) {
     const getId = (url) => {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
         const match = url?.match(regExp);
-      
+
         return (match && match[2].length === 11)
-          ? match[2]
-          : null;
-      }
+            ? match[2]
+            : null;
+    }
     const convertLink = (url) => {
         return `https://www.youtube.com/embed/${getId(url)}`
-      }
-    
+    }
+
     return (
-        <div style={{ backgroundImage: `url(${filmDetail.hinhAnh})`, backgroundRepeat: 'no-repeat', backgroundSize: '100%', backgroundPosition: 'center', minHeight: '100vh' }}>
+        <div className="" style={{ backgroundImage: `url(${filmDetail.hinhAnh})`, backgroundRepeat: 'no-repeat', backgroundSize: '100%', backgroundPosition: 'center', minHeight: '100vh' }}>
             <CustomCard
                 style={{ paddingTop: '150px', minHeight: '100vh', borderRadius: '0' }}
                 effectColor="#0a2029" // required
@@ -107,10 +109,10 @@ export default function Detail(props) {
                 <div className="grid grid-cols-12">
                     <div className="col-span-5 col-start-3">
                         <div className="grid grid-cols-3">
-                            <div onClick={()=>showModal()}>
-                            <img src={filmDetail.hinhAnh} alt={filmDetail.tenPhim} className="col-span-1" />
+                            <div onClick={() => showModal()}>
+                                <img src={filmDetail.hinhAnh} alt={filmDetail.tenPhim} className="col-span-1" />
                             </div>
-                        
+
                             <div className="col-span-2 flex flex-col justify-center ml-10">
                                 <p className="text-white">Ngày Chiếu: {moment(filmDetail.ngayKhoiChieu).format('dd-mm-yyyy')}</p>
                                 <p className="text-4xl text-white">{filmDetail.tenPhim}</p>
@@ -138,8 +140,6 @@ export default function Detail(props) {
 
                     </div>
                 </div>
-
-
 
                 <div className="mt-10 w-2/3 bg-white p-5 container" style={{ marginLeft: 245 }}>
                     <div>
@@ -184,12 +184,10 @@ export default function Detail(props) {
                 </div>
             </CustomCard>
 
-            <Modal visible={isModalVisible}    centered
-          style={{ width: (width / 100) }} footer onOk={handleOk} onCancel={handleCancel}>
-                <iframe style={{ width: '100%'}} height="400px" src={convertLink(filmDetail?.trailer)}></iframe>
+            <Modal visible={isModalVisible} centered
+                style={{ width: (width / 100) }} footer onOk={handleOk} onCancel={handleCancel}>
+                <iframe style={{ width: '100%' }} height="400px" src={convertLink(filmDetail?.trailer)}></iframe>
             </Modal>
-
-
         </div>
     )
 }
