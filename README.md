@@ -1,4 +1,4 @@
-# Booking Tickeet Project
+# Booking Ticket Project
 
      Website đặt vé xem phim trực truyến.
 
